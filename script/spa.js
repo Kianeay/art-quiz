@@ -1,20 +1,23 @@
-const components = {
+import { Header, Content, Footer } from "./components.js";
+import { Main } from "./pages.js";
+
+export const components = {
   header: Header,
   content: Content,
   footer: Footer,
 };
 
-const routes = {
+export const routes = {
   main: Main,
-  chat: Chat,
   default: Main,
-  login: Login,
-  /* error: ErrorPage, */
+  /*    
+    login: Login,
+    error: ErrorPage, */
 };
 
 //       spa init module
 
-const mySPA = (function () {
+export const mySPA = (function () {
   //      begin view
 
   function ModuleView() {
@@ -65,43 +68,29 @@ const mySPA = (function () {
       myModuleContainer = container;
       myModel = model;
     };
-
-    //    end controller
-
-    return {
-      init: function ({ container, routes, components }) {
-        this.renderComponents(container, components);
-
-        const view = new ModuleView();
-        const model = new ModuleModel();
-        const controller = new ModuleController();
-
-        view.init(document.getElementById(container), routes);
-        model.init(view);
-        controller.init(document.getElementById(container), model);
-      },
-
-      // draw main components
-      renderComponents: function (container, components) {
-        const root = document.getElementById(container);
-        const componentList = Object.keys(components);
-        for (let item of componentList) {
-          root.innerHTML += components[item].render("component");
-        }
-      },
-    };
   }
+  //    end controller
+
+  return {
+    init: function ({ container, routes, components }) {
+      this.renderComponents(container, components);
+
+      const view = new ModuleView();
+      const model = new ModuleModel();
+      const controller = new ModuleController();
+
+      view.init(document.getElementById(container), routes);
+      model.init(view);
+      controller.init(document.getElementById(container), model);
+    },
+
+    // draw main components
+    renderComponents: function (container, components) {
+      const root = document.getElementById(container);
+      const componentList = Object.keys(components);
+      for (let item of componentList) {
+        root.innerHTML += components[item].render("component");
+      }
+    },
+  };
 })();
-
-//      end module
-
-//      init module
-
-document.addEventListener(
-  "DOMContentLoaded",
-  mySPA.init({
-    container: "spa",
-    routes: routes,
-    components: components,
-  })
-);
