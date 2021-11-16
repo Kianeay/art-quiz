@@ -10,7 +10,8 @@ export const Header = {
             <img src="assets/logo.png" alt="" class="header__logo-wrap__logo" />
           </div>
           <nav class="header__menu">
-            <button class="button header__menu__btn">Settings</button>
+            <a class="button header__menu__link" href="#settings">Settings</a>
+            <a class="button header__menu__link" href="#score">Score</a>
           </nav>
         </div>
       </div>

@@ -28,6 +28,7 @@ export const mySPA = (function () {
     this.init = function (container, routes) {
       myModuleContainer = container;
       routesObj = routes;
+      contentContainer = myModuleContainer.querySelector("#content");
     };
 
     this.renderContent = function (pageName) {
@@ -42,10 +43,19 @@ export const mySPA = (function () {
       );
       this.updateLink(routesObj[routeName].id);
     };
+
+    this.updateLink = function (currentPage) {
+        let links = document.querySelectorAll(".header__menu__link");
+  
+        for (let link of links) {
+          currentPage === link.getAttribute("href").slice(1)
+            ? link.classList.add("active")
+            : link.classList.remove("active");
+        }
+      };
   }
 
   //        end view
-
   //        begin model
 
   function ModuleModel() {
@@ -54,20 +64,33 @@ export const mySPA = (function () {
     this.init = function (view) {
       myView = view;
     };
+
+    this.update = function (pageName) {
+        myView.renderContent(pageName);
+      };
   }
 
   //      end model
-
   //      begin controller
 
   function ModuleController() {
     let myModuleContainer = null;
     let myModel = null;
+    let pageName = null;
 
     this.init = function (container, model) {
       myModuleContainer = container;
       myModel = model;
+
+      window.addEventListener("hashchange", this.update);
+      this.update();
     };
+
+    this.update = function () {
+        /* const pageName = window.location.hash.slice(1).toLowerCase(); */
+        pageName = window.location.hash.slice(1).toLowerCase();
+        myModel.update(pageName);
+      };
   }
   //    end controller
 
