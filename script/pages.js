@@ -1,5 +1,4 @@
 
-
   export const Main = {
     id: "main",
     title: "Themes",
@@ -11,6 +10,7 @@
           <div class="main__cards flex flex-jc-c">
             <div class="main__cards__card">
               <img src="./assets.jpg" alt="">
+             
               <p class="main__cards__card__title">Artists</p>
               <a href="#artists" class="fill-div hash"></a>
             </div>
@@ -31,3 +31,42 @@
     },
   };
 
+  export const Artists = {
+    id: "artists",
+    title: "Artists quiz",
+    render: (className = "container", ...rest) => {
+      return `
+         
+          `;
+    },
+  };
+
+  export const Pictures = {
+    id: "pictures",
+    title: "Pictures quiz",
+    render: (className = "container", ...rest) => {
+      return `
+         
+          `;
+    },
+  };
+
+  export const Settings = {
+    id: "settings",
+    title: "quiz Settings",
+    render: (className = "container", ...rest) => {
+      return `
+         
+          `;
+    },
+  };
+
+  export const Scores = {
+    id: "scores",
+    title: "quiz scores",
+    render: (className = "container", ...rest) => {
+      return `
+         
+          `;
+    },
+  };

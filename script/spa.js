@@ -1,5 +1,5 @@
 import { Header, Content, Footer } from "./components.js";
-import { Main } from "./pages.js";
+import { Main, Artists, Pictures, Settings, Scores } from "./pages.js";
 
 export const components = {
   header: Header,
@@ -10,6 +10,10 @@ export const components = {
 export const routes = {
   main: Main,
   default: Main,
+  artists: Artists,
+  pictures: Pictures,
+  settings: Settings,
+  scores: Scores,
   /*    
     login: Login,
     error: ErrorPage, */
