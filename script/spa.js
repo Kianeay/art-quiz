@@ -43,7 +43,7 @@ export const mySPA = (function () {
       }
       window.document.title = routesObj[routeName].title;
       contentContainer.innerHTML = routesObj[routeName].render(
-        `${routeName}-page`
+        `${routeName}`
       );
       this.updateLink(routesObj[routeName].id);
     };
