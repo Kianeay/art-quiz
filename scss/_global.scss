@@ -80,3 +80,6 @@ ul {
 .none {
   display: none;
 }
+.content {
+  min-height: calc(100vh - 254px);
+}

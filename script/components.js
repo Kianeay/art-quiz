@@ -30,9 +30,25 @@ export const Content = {
 export const Footer = {
   render: (customClass = "") => {
     return `
-        <footer class="footer ${customClass}">
-
-        </footer>
+    <footer class="footer">
+    <div class="wrapper">
+      <ul>
+        <li>
+          <a
+            href="https://github.com/Kianeay/"
+            target=" _blank"
+            ><img src="assets/github_PNG40.png" alt="git logo"
+          /></a>
+        </li>
+        <li>&copy;2021</li>
+        <li>
+          <a href="https://rs.school/js/" target=" _blank"
+            ><img src="assets/logo-rsschool3.png" alt="rsschool"
+          /></a>
+        </li>
+      </ul>
+    </div>
+  </footer>
         `;
   },
 };

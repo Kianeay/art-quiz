@@ -4,4 +4,10 @@
     border-bottom: dotted #f38c8c;
     padding-bottom: 10px;
   }
+
+  &__menu {
+    &__link {
+      padding: 5px;
+    }
+  }
 }

@@ -9,14 +9,14 @@
           <div class="wrapper">
           <div class="main__cards flex flex-jc-c">
             <div class="main__cards__card">
-              <img src="./assets.jpg" alt="">
+              <img src="./assets/rembrandt.jpg" alt="">
              
               <p class="main__cards__card__title">Artists</p>
               <a href="#artists" class="fill-div hash"></a>
             </div>
   
             <div class="main__cards__card">
-            <img src="./assets/.jpg" alt="">
+            <img src="./assets/30full.jpg" alt="">
             <p class="main__cards__card__title">Pictures</p>
             <a href="#pictures" class="fill-div hash"></a>
           </div>
