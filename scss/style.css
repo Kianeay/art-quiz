@@ -71,7 +71,7 @@ ul {
 }
 
 .button {
-  background-color: #f38c8c;
+  background-color: #521ca8;
   color: white;
   outline: none;
   border: none;
@@ -85,11 +85,11 @@ ul {
 }
 
 .button:hover {
-  background-color: #af6464;
+  background-color: #ae46f3;
 }
 
 .button.active {
-  background-color: #af6464;
+  background-color: #ae46f3;
 }
 
 .hide {
@@ -132,7 +132,7 @@ ul {
 .main__cards__card__title {
   position: absolute;
   bottom: 0;
-  color: #f38c8c;
+  color: #521ca8;
   left: 0;
   font-size: 1.5rem;
   font-weight: bold;
@@ -211,7 +211,7 @@ ul {
 .artists__cards__card__title {
   position: absolute;
   bottom: 0;
-  color: #f38c8c;
+  color: #521ca8;
   left: 0;
   font-size: 1.5rem;
   font-weight: bold;
