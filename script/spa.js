@@ -1,5 +1,8 @@
 import { Header, Content, Footer } from "./components.js";
-import { Main, Artists, Pictures, Settings, Scores } from "./pages.js";
+import { drawArtistCard1 } from "./create-card.js";
+
+import { Main, Artists, Pictures, Settings, Scores, ArtistGame } from "./pages.js";
+
 
 export const components = {
   header: Header,
@@ -14,6 +17,7 @@ export const routes = {
   pictures: Pictures,
   settings: Settings,
   scores: Scores,
+  artgame: ArtistGame,
   /*    
     login: Login,
     error: ErrorPage, */
@@ -46,6 +50,13 @@ export const mySPA = (function () {
         `${routeName}`
       );
       this.updateLink(routesObj[routeName].id);
+
+      if (pageName === 'artists') {
+       let cards = document.querySelectorAll('.artists__cards__card');
+        cards.forEach(el => {
+           el.addEventListener("click", drawArtistCard1.init());
+         });
+       }
     };
 
     this.updateLink = function (currentPage) {
@@ -82,9 +93,14 @@ export const mySPA = (function () {
     let myModel = null;
     let pageName = null;
 
+   
+
     this.init = function (container, model) {
       myModuleContainer = container;
       myModel = model;
+
+      
+     
 
       window.addEventListener("hashchange", this.update);
       this.update();
@@ -94,7 +110,10 @@ export const mySPA = (function () {
         /* const pageName = window.location.hash.slice(1).toLowerCase(); */
         pageName = window.location.hash.slice(1).toLowerCase();
         myModel.update(pageName);
+
+     
       };
+
   }
   //    end controller
 
