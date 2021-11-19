@@ -265,6 +265,13 @@ ul {
   background-color: aquamarine;
 }
 
+.artgame__img-wrap__img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 .artgame__answers__answer {
   background-color: aquamarine;
 }

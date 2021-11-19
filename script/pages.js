@@ -127,7 +127,7 @@ export const ArtistGame = {
       <div class="${className}">
         <h2 class="artgame__title">Кто автор данной картины?</h2>
         <div class="artgame__img-wrap">
-          <img src="" alt="">
+          <img class="artgame__img-wrap__img" src="" alt="">
         </div>
         <div class="artgame__answers">
           <p class="artgame__answers__answer">first</p>

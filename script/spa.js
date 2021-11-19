@@ -1,5 +1,5 @@
 import { Header, Content, Footer } from "./components.js";
-import { drawArtistCard1 } from "./create-card.js";
+import { GetCardName } from "./create-card.js";
 
 import { Main, Artists, Pictures, Settings, Scores, ArtistGame } from "./pages.js";
 
@@ -33,6 +33,8 @@ export const mySPA = (function () {
     let contentContainer = null;
     let routesObj = null;
 
+    let cardName = null;
+
     this.init = function (container, routes) {
       myModuleContainer = container;
       routesObj = routes;
@@ -52,10 +54,11 @@ export const mySPA = (function () {
       this.updateLink(routesObj[routeName].id);
 
       if (pageName === 'artists') {
-       let cards = document.querySelectorAll('.artists__cards__card');
-        cards.forEach(el => {
-           el.addEventListener("click", drawArtistCard1.init());
-         });
+        cardName = new GetCardName();
+       
+       } else if ((pageName === 'artgame')) {
+        
+        cardName.fillContent();
        }
     };
 
