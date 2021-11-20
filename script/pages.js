@@ -130,10 +130,10 @@ export const ArtistGame = {
           <img class="artgame__img-wrap__img" src="" alt="">
         </div>
         <div class="artgame__answers">
-          <p class="artgame__answers__answer">first</p>
-          <p class="artgame__answers__answer">sec</p>
-          <p class="artgame__answers__answer">third</p>
-          <p class="artgame__answers__answer">forth</p>
+          <button class="artgame__answers__answer">first</button>
+          <button class="artgame__answers__answer">sec</button>
+          <button class="artgame__answers__answer">third</button>
+          <button class="artgame__answers__answer">forth</button>
         </div>
       </div>
     </div> 

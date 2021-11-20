@@ -61,8 +61,30 @@
     }
   }
   &__answers {
+    flex: 1 1 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: ". ." ". .";
+    gap: 30px;
+    margin-top: 20px;
+
     &__answer {
-        background-color: aquamarine;
+      background-color: $main;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      width: 200px;
+      height: 50px;
+      cursor: pointer;
+
+      &:active {
+        background-color: $orange;
+      }
+
+      &:hover {
+        background-color: $submain;
+      }
     }
   }
 }

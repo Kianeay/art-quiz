@@ -272,7 +272,36 @@ ul {
   height: 100%;
 }
 
+.artgame__answers {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: ". ." ". .";
+  gap: 30px;
+  margin-top: 20px;
+}
+
 .artgame__answers__answer {
-  background-color: aquamarine;
+  background-color: #D34252;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.artgame__answers__answer:active {
+  background-color: #DD7C48;
+}
+
+.artgame__answers__answer:hover {
+  background-color: #d30920;
 }
 /*# sourceMappingURL=style.css.map */

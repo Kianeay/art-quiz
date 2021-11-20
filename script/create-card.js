@@ -3,6 +3,7 @@ import images from "./images.js";
 export class GetCardName {
   constructor() {
     this.cards = document.querySelectorAll(".artists__cards__card");
+    this.nodeAnswers = null;
 
     this.imgNumber = 0;
     this.cardName = "";
@@ -101,6 +102,13 @@ export class GetCardName {
       }
       this.answers = this.answers.sort(() => Math.random() - 0.5);
       console.log((this.answers));
+      this.nodeAnswers = document.querySelectorAll(".artgame__answers__answer");
+
+      this.nodeAnswers.forEach((el, i) => {
+       
+          el.textContent =  this.answers[i];
+     
+      })
     }
   }
 
