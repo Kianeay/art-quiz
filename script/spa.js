@@ -57,7 +57,7 @@ export const mySPA = (function () {
         cardName = new GetCardName();
        
        } else if ((pageName === 'artgame')) {
-        
+        if (!cardName) cardName = new GetCardName();
         cardName.fillContent();
        }
     };
