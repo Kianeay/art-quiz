@@ -40,7 +40,7 @@ export const Footer = {
             ><img src="assets/github_PNG40.png" alt="git logo"
           /></a>
         </li>
-        <li>&copy;2021</li>
+        <li>&copy;2021 Ekaterina</li>
         <li>
           <a href="https://rs.school/js/" target=" _blank"
             ><img src="assets/logo-rsschool3.png" alt="rsschool"

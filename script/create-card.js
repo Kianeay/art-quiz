@@ -5,6 +5,8 @@ export class GetCardName {
     this.cards = document.querySelectorAll(".artists__cards__card");
     this.nodeAnswers = null;
 
+    this.modal = document.querySelector(".modal-wrap");
+
     this.imgNumber = 0;
     this.cardName = "";
     this.answer = "";
@@ -51,7 +53,9 @@ export class GetCardName {
     return localStorage.getItem(key);
   }
 
-  fillContent() {
+  fillContent(e) {
+   if (e) e.preventDefault();
+    this.modal.classList.add("none");
     if (!this.cardName) {
       this.cardName = this.getItemFromStorage("cardName");
     }
@@ -87,7 +91,40 @@ export class GetCardName {
       this.nodeAnswers.forEach((el, i) => {
         el.textContent = this.answers[i];
       });
+      this.nodeAnswers.forEach((el) => {
+        el.addEventListener("click", (e) => this.fillModal(e));
+      });
     }
+  }
+
+  fillModal(e) {
+    e.preventDefault();
+    this.modalIcon = document.querySelector(".modal__icon");
+
+    if (e.currentTarget.textContent === this.answer) {
+      this.modalIcon.classList.add("correct");
+      this.imgNumber++;
+    
+    } else {
+      this.modalIcon.classList.add("wrong");
+    }
+
+    this.modalImg = document.querySelector(".artgame__img-wrap__img");
+    this.modalImg.src = `./assets/full/${this.imgNumber}full.jpg`;
+   
+    let picInfo = [];
+    picInfo.push(images[this.imgNumber]["name"]);
+    picInfo.push(images[this.imgNumber]["author"]);
+    picInfo.push(images[this.imgNumber]["year"]);
+
+    this.modalText = document.querySelectorAll(".modal__info__text");
+    this.modalText.forEach((el, i) => {
+      el.textContent = picInfo[i];
+    });
+
+    this.modal.classList.remove("none");
+    this.modalBtn = document.querySelector(".modal__btn");
+    this.modalBtn.addEventListener('click', (e) => this.fillContent(e));
   }
 
   randomInteger(min, max) {
