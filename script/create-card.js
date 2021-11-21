@@ -29,13 +29,31 @@ export class GetCardName {
     this.cards.forEach((el) => {
       el.addEventListener("click", (e) => this.init(e), { once: true });
     });
-    this.cards.forEach((el) => {
+
+    this.checkCards();
+    /*    this.cards.forEach((el) => {
       el.removeEventListener("click", (e) => this.init(e), { once: true });
-    });
+    }); */
+  }
+
+  checkCards() {
+    if (JSON.parse(this.getItemFromStorage("types"))) {
+      this.types = JSON.parse(this.getItemFromStorage("types"));
+
+      this.cards.forEach((el) => {
+        let text = el.className.split(" ");
+        text = text[text.length - 1];
+        console.log(this.types[text]);
+        if (this.types[text].length !== 0) {
+          el.classList.remove("grey");
+        }
+      });
+    }
   }
 
   init(e) {
     e.stopPropagation();
+
     this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString();
     this.setLocalStorage("cardName", this.cardName);
 
@@ -63,67 +81,57 @@ export class GetCardName {
     if (!this.cardName) {
       this.cardName = this.getItemFromStorage("cardName");
     }
- 
 
+    switch (this.cardName) {
+      case "portrait":
+        this.imgNumber = 0;
+        break;
 
+      case "landscape":
+        this.imgNumber = 11;
+        break;
 
+      case "stillLife":
+        this.imgNumber = 21;
+        break;
 
+      case "graphic":
+        this.imgNumber = 31;
+        break;
 
+      case "antique":
+        this.imgNumber = 41;
+        break;
 
+      case "avantGarde":
+        this.imgNumber = 51;
+        break;
 
+      case "renaissance":
+        this.imgNumber = 61;
+        break;
 
+      case "surrealism":
+        this.imgNumber = 71;
+        break;
 
-    switch(this.cardName) {
-      case 'portrait':  
-      this.imgNumber = 0;
-      break;
+      case "kitsch":
+        this.imgNumber = 81;
+        break;
 
-      case 'landscape':  
-      this.imgNumber = 11;
-      break;
+      case "minimalism":
+        this.imgNumber = 91;
+        break;
 
-      case 'stillLife':  
-      this.imgNumber = 21;
-      break;
+      case "avangard":
+        this.imgNumber = 101;
+        break;
 
-      case 'graphic':  
-      this.imgNumber = 31;
-      break;
-
-      case 'antique':  
-      this.imgNumber = 41;
-      break;
-
-      case 'avantGarde':  
-      this.imgNumber = 51;
-      break;
-
-      case 'renaissance':  
-      this.imgNumber = 61;
-      break;
-
-      case 'surrealism':  
-      this.imgNumber = 71;
-      break;
-
-      case 'kitsch':  
-      this.imgNumber = 81;
-      break;
-
-      case 'minimalism':  
-      this.imgNumber = 91;
-      break;
-
-      case 'avangard':  
-      this.imgNumber = 101;
-      break;
-
-      case 'industrial':  
-      this.imgNumber = 111;
-      break;
-    
+      case "industrial":
+        this.imgNumber = 111;
+        break;
     }
-  
+
     while (
       JSON.parse(this.getItemFromStorage("types"))[this.cardName].indexOf(
         this.imgNumber
@@ -134,7 +142,7 @@ export class GetCardName {
         return; */
     }
     this.img = document.querySelector(".artgame__img-wrap__img");
-    this.img.src = `./assets/full/${this.imgNumber}full.jpg`;
+    this.img.src = `./assets/img/${this.imgNumber}.jpg`;
 
     this.answer = images[this.imgNumber]["author"];
 
@@ -169,7 +177,7 @@ export class GetCardName {
     this.types = JSON.parse(this.getItemFromStorage("types"));
 
     this.modalImg = document.querySelector(".modal__img-wrap__img");
-    this.modalImg.src = `./assets/full/${this.imgNumber}full.jpg`;
+    this.modalImg.src = `./assets/img/${this.imgNumber}.jpg`;
 
     let picInfo = [];
     picInfo.push(images[this.imgNumber]["name"]);

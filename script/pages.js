@@ -30,6 +30,8 @@ export const Main = {
   },
 };
 
+
+
 export const Artists = {
   id: "artists",
   title: "Artists quiz",
@@ -40,73 +42,73 @@ export const Artists = {
       <div class="wrapper">
       <div class="artists__cards flex flex-jc-c">
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey portrait">
         <img src="./assets/full/0full.jpg" alt="" />
         <p class="artists__cards__card__title">Portrait</p>
         <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey landscape">
         <img src="./assets/full/10full.jpg" alt="" />
         <p class="artists__cards__card__title">landscape</p>
         <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey stillLife">
       <img src="./assets/full/20full.jpg" alt="" />
       <p class="artists__cards__card__title">still life</p>
       <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey graphic">
       <img src="./assets/full/30full.jpg" alt="" />
       <p class="artists__cards__card__title">graphic</p>
       <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey antique">
       <img src="./assets/full/40full.jpg" alt="" />
       <p class="artists__cards__card__title">antique</p>
       <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey avantGarde">
       <img src="./assets/full/50full.jpg" alt="" />
       <p class="artists__cards__card__title">avant-garde</p>
       <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey renaissance">
       <img src="./assets/full/60full.jpg" alt="" />
       <p class="artists__cards__card__title">renaissance</p>
       <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey surrealism">
       <img src="./assets/full/70full.jpg" alt="" />
       <p class="artists__cards__card__title">surrealism</p>
       <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey kitsch">
       <img src="./assets/full/80full.jpg" alt="" />
       <p class="artists__cards__card__title">kitsch</p>
       <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey minimalism">
       <img src="./assets/full/90full.jpg" alt="" />
       <p class="artists__cards__card__title">minimalism</p>
       <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey avangard">
       <img src="./assets/full/100full.jpg" alt="" />
       <p class="artists__cards__card__title">avangard</p>
       <a href="#artgame" class="fill-div hash"></a>
       </div>
 
-      <div class="artists__cards__card">
+      <div class="artists__cards__card grey industrial">
       <img src="./assets/full/110full.jpg" alt="" />
       <p class="artists__cards__card__title">industrial</p>
       <a href="#artgame" class="fill-div hash"></a>
