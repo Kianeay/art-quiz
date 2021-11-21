@@ -4,7 +4,6 @@ export class GetCardName {
   constructor() {
     this.cards = document.querySelectorAll(".artists__cards__card");
     this.nodeAnswers = null;
-
     this.modal = document.querySelector(".modal-wrap");
 
     this.imgNumber = 0;
@@ -28,17 +27,17 @@ export class GetCardName {
     };
 
     this.cards.forEach((el) => {
-      el.addEventListener("click", (e) => this.init(e));
+      el.addEventListener("click", (e) => this.init(e), { once: true });
+    });
+    this.cards.forEach((el) => {
+      el.removeEventListener("click", (e) => this.init(e), { once: true });
     });
   }
 
   init(e) {
+    e.stopPropagation();
     this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString();
     this.setLocalStorage("cardName", this.cardName);
-
-    if (!this.getItemFromStorage("artInfo")) {
-      this.setLocalStorage("artInfo", JSON.stringify(images));
-    }
 
     if (!this.getItemFromStorage("types")) {
       this.setLocalStorage("types", JSON.stringify(this.types));
@@ -54,59 +53,124 @@ export class GetCardName {
   }
 
   fillContent(e) {
-   if (e) e.preventDefault();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     this.modal.classList.add("none");
     this.answers = [];
+
     if (!this.cardName) {
       this.cardName = this.getItemFromStorage("cardName");
     }
+ 
 
-    if (this.cardName === "portrait") {
-      if (
-        JSON.parse(this.getItemFromStorage("types")).portrait.indexOf(
-          this.imgNumber
-        ) !== -1
-      ) {
-        this.imgNumber++;
-        this.fillContent();
-      } else {
-        this.img = document.querySelector(".artgame__img-wrap__img");
-        this.img.src = `./assets/full/${this.imgNumber}full.jpg`;
-      }
 
-      this.answer = images[this.imgNumber]["author"];
 
-      this.answers.push(this.answer);
 
-      while (this.answers.length < 4) {
-        let authorNum = this.randomInteger(0, 200);
-        let author = images[authorNum]["author"];
-        if (this.answers.indexOf(author) === -1) {
-          this.answers.push(author);
-        }
-      }
-      this.answers = this.answers.sort(() => Math.random() - 0.5);
-      console.log(this.answers);
-      this.nodeAnswers = document.querySelectorAll(".artgame__answers__answer");
 
-      this.nodeAnswers.forEach((el, i) => {
-        el.textContent = this.answers[i];
-      });
-      this.nodeAnswers.forEach((el) => {
-        el.addEventListener("click", (e) => this.fillModal(e));
-      });
+
+
+
+
+    switch(this.cardName) {
+      case 'portrait':  
+      this.imgNumber = 0;
+      break;
+
+      case 'landscape':  
+      this.imgNumber = 11;
+      break;
+
+      case 'stillLife':  
+      this.imgNumber = 21;
+      break;
+
+      case 'graphic':  
+      this.imgNumber = 31;
+      break;
+
+      case 'antique':  
+      this.imgNumber = 41;
+      break;
+
+      case 'avantGarde':  
+      this.imgNumber = 51;
+      break;
+
+      case 'renaissance':  
+      this.imgNumber = 61;
+      break;
+
+      case 'surrealism':  
+      this.imgNumber = 71;
+      break;
+
+      case 'kitsch':  
+      this.imgNumber = 81;
+      break;
+
+      case 'minimalism':  
+      this.imgNumber = 91;
+      break;
+
+      case 'avangard':  
+      this.imgNumber = 101;
+      break;
+
+      case 'industrial':  
+      this.imgNumber = 111;
+      break;
+    
     }
+  
+    while (
+      JSON.parse(this.getItemFromStorage("types"))[this.cardName].indexOf(
+        this.imgNumber
+      ) !== -1
+    ) {
+      this.imgNumber++;
+      /*     this.fillContent();
+        return; */
+    }
+    this.img = document.querySelector(".artgame__img-wrap__img");
+    this.img.src = `./assets/full/${this.imgNumber}full.jpg`;
+
+    this.answer = images[this.imgNumber]["author"];
+
+    this.answers.push(this.answer);
+
+    while (this.answers.length < 4) {
+      let authorNum = this.randomInteger(0, 200);
+      let author = images[authorNum]["author"];
+      if (this.answers.indexOf(author) === -1) {
+        this.answers.push(author);
+      }
+    }
+    this.answers = this.answers.sort(() => Math.random() - 0.5);
+
+    this.nodeAnswers = document.querySelectorAll(".artgame__answers__answer");
+
+    this.nodeAnswers.forEach((el, i) => {
+      el.textContent = this.answers[i];
+      el.addEventListener("click", (e) => this.fillModal(e), { once: true });
+    });
+
+    this.nodeAnswers.forEach((el) => {
+      el.removeEventListener("click", (e) => this.fillModal(e), { once: true });
+    });
   }
 
   fillModal(e) {
     e.preventDefault();
+    e.stopPropagation();
+
     this.modalIcon = document.querySelector(".modal__icon");
-    this.types  =   JSON.parse(this.getItemFromStorage("types"));
-    console.log( this.types );
+    this.types = JSON.parse(this.getItemFromStorage("types"));
 
     this.modalImg = document.querySelector(".modal__img-wrap__img");
     this.modalImg.src = `./assets/full/${this.imgNumber}full.jpg`;
-   
+
     let picInfo = [];
     picInfo.push(images[this.imgNumber]["name"]);
     picInfo.push(images[this.imgNumber]["author"]);
@@ -119,19 +183,28 @@ export class GetCardName {
 
     this.modal.classList.remove("none");
     this.modalBtn = document.querySelector(".modal__btn");
-    this.modalBtn.addEventListener('click', (e) => this.fillContent(e));
+    this.modalBtn.addEventListener("click", (e) => this.fillContent(e), {
+      once: true,
+    });
+    this.modalBtn.removeEventListener("click", (e) => this.fillContent(e), {
+      once: true,
+    });
 
     if (e.currentTarget.textContent === this.answer) {
+      this.modalIcon.classList.remove("wrong");
       this.modalIcon.classList.add("correct");
-      console.log('true');
-      this.types[this.getItemFromStorage("cardName")].push(this.imgNumber);
-      this.setLocalStorage("types", JSON.stringify(this.types));
-      this.imgNumber++;
-      
+
+      if (
+        this.types[this.getItemFromStorage("cardName")].indexOf(
+          this.imgNumber
+        ) === -1
+      ) {
+        this.types[this.getItemFromStorage("cardName")].push(this.imgNumber);
+        this.setLocalStorage("types", JSON.stringify(this.types));
+      }
     } else {
+      this.modalIcon.classList.remove("correct");
       this.modalIcon.classList.add("wrong");
-      console.log('false');
-      this.imgNumber++;
     }
   }
 
@@ -154,3 +227,9 @@ this.minimalism = [];
 this.avangard = [];
 this.industrial = [];
  */
+/* if (!this.getItemFromStorage("artInfo")) {
+      this.setLocalStorage("artInfo", JSON.stringify(images));
+    } */
+/*   this.nodeAnswers.forEach((el) => {
+        el.addEventListener("click", (e) => this.fillModal(e));
+      }); */
