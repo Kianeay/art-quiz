@@ -56,6 +56,7 @@ export class GetCardName {
   fillContent(e) {
    if (e) e.preventDefault();
     this.modal.classList.add("none");
+    this.answers = [];
     if (!this.cardName) {
       this.cardName = this.getItemFromStorage("cardName");
     }
@@ -100,16 +101,10 @@ export class GetCardName {
   fillModal(e) {
     e.preventDefault();
     this.modalIcon = document.querySelector(".modal__icon");
+    this.types  =   JSON.parse(this.getItemFromStorage("types"));
+    console.log( this.types );
 
-    if (e.currentTarget.textContent === this.answer) {
-      this.modalIcon.classList.add("correct");
-      this.imgNumber++;
-    
-    } else {
-      this.modalIcon.classList.add("wrong");
-    }
-
-    this.modalImg = document.querySelector(".artgame__img-wrap__img");
+    this.modalImg = document.querySelector(".modal__img-wrap__img");
     this.modalImg.src = `./assets/full/${this.imgNumber}full.jpg`;
    
     let picInfo = [];
@@ -125,6 +120,19 @@ export class GetCardName {
     this.modal.classList.remove("none");
     this.modalBtn = document.querySelector(".modal__btn");
     this.modalBtn.addEventListener('click', (e) => this.fillContent(e));
+
+    if (e.currentTarget.textContent === this.answer) {
+      this.modalIcon.classList.add("correct");
+      console.log('true');
+      this.types[this.getItemFromStorage("cardName")].push(this.imgNumber);
+      this.setLocalStorage("types", JSON.stringify(this.types));
+      this.imgNumber++;
+      
+    } else {
+      this.modalIcon.classList.add("wrong");
+      console.log('false');
+      this.imgNumber++;
+    }
   }
 
   randomInteger(min, max) {
