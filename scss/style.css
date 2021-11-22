@@ -111,6 +111,20 @@ ul {
   top: 160px;
 }
 
+h2 {
+  text-align: center;
+}
+
+.absolut {
+  position: absolute;
+  right: 10px;
+  background-color: white;
+  width: 30px;
+  text-align: center;
+  top: 10px;
+  border-radius: 15px;
+}
+
 .header__wrap {
   padding-top: 20px;
   border-bottom: dotted #D34252;
@@ -130,6 +144,22 @@ ul {
 
 .header__logo-wrap__logo {
   width: 80px;
+}
+
+@media (max-width: 500px) {
+  .header__menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 5px;
+  }
+  .header__menu__link {
+    height: 30px;
+  }
 }
 
 .main__cards {
@@ -370,6 +400,12 @@ ul {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 500px) {
+  .artgame__img-wrap {
+    height: 150px;
+  }
 }
 
 .modal-wrap {

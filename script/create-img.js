@@ -10,7 +10,7 @@ export class DrawImgCard {
     this.changeArtistPage = true;
     this.title = document.querySelector(".artgame__title");
 
-    this.imgNumber = 130;
+    this.imgNumber = null;
     this.cardName = "";
     this.answer = "";
     this.answers = [];
@@ -99,7 +99,7 @@ export class DrawImgCard {
     }
 
     if (this.isTimerOn) {
-      document.querySelector(".artgame").append(this.myTimer.component);
+      document.querySelector(".picturesgame").append(this.myTimer.component);
       this.myTimer.start();
     }
 
@@ -116,8 +116,6 @@ export class DrawImgCard {
       for (let j = 0; j < this.imgTypes[this.cardName].length; j++) {
         let char = this.imgTypes[this.cardName][j].toString();
         char = char.slice(-1);
-        console.log(i);
-        console.log(char);
         if (i == char) {
           el.classList.add("green");
         } else {
@@ -126,7 +124,7 @@ export class DrawImgCard {
       }
     });
 
-    if (this.imgNumber) {
+    if (!this.imgNumber) {
       switch (this.cardName) {
         case "portrait":
           this.imgNumber = 130;
@@ -177,9 +175,10 @@ export class DrawImgCard {
           break;
       }
     }
-
+   
     if (answ === false) {
       this.imgNumber++;
+   
     }
 
     this.checkLastImg();
@@ -196,6 +195,7 @@ export class DrawImgCard {
 
     this.answer = images[this.imgNumber]["imageNum"];
     this.answerAuthor = images[this.imgNumber]["author"];
+
 
     this.title = document.querySelector(".artgame__title");
     this.title.textContent = `Какую картину написал ${this.answerAuthor}?`;
@@ -227,6 +227,7 @@ export class DrawImgCard {
         let text = target.src.split("/");
         text = text[text.length - 1];
         text = text.substring(0, text.length - 4);
+    
         if (target.tagName != "IMG") return;
         this.fillModal(e, text);
       },
@@ -237,12 +238,12 @@ export class DrawImgCard {
   }
 
   checkLastImg() {
-    if (
+  /*   if (
       this.picBreak.indexOf(this.imgNumber) !== -1 &&
       this.changeArtistPage === false
     ) {
       window.location.hash = "pictures";
-    }
+    } */
   }
 
   fillModal(e, text) {
@@ -253,12 +254,12 @@ export class DrawImgCard {
     this.modalIcon = document.querySelector(".modal__icon");
     this.imgTypes = JSON.parse(this.getItemFromStorage("imgTypes"));
     this.modalImg = document.querySelector(".modal__img-wrap__img");
-    this.modalImg.src = `./assets/img/${this.imgNumber}.jpg`;
+    this.modalImg.src = `./assets/img/${this.answer}.jpg`;
 
     let picInfo = [];
-    picInfo.push(images[this.imgNumber]["name"]);
-    picInfo.push(images[this.imgNumber]["author"]);
-    picInfo.push(images[this.imgNumber]["year"]);
+    picInfo.push(images[this.answer]["name"]);
+    picInfo.push(images[this.answer]["author"]);
+    picInfo.push(images[this.answer]["year"]);
 
     this.modalText = document.querySelectorAll(".modal__info__text");
     this.modalText.forEach((el, i) => {

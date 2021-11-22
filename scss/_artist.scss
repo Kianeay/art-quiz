@@ -132,3 +132,9 @@
   justify-content: center;
   align-items: center;
   }
+
+  @media (max-width:500px) {
+    .artgame__img-wrap {
+      height: 150px;
+      }
+  }

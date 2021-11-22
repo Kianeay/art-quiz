@@ -18,3 +18,15 @@
     }
   }
 }
+
+
+@media (max-width:500px) {
+  .header__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    &__link {
+      height: 30px;
+    }
+    }
+}

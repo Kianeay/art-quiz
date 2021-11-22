@@ -1,3 +1,4 @@
+
 import images from "./images.js";
 import Timer from "./timer.js";
 
@@ -82,6 +83,7 @@ export class GetCardName {
     if (!this.getItemFromStorage("types")) {
       this.setLocalStorage("types", JSON.stringify(this.types));
     }
+
   }
 
   setLocalStorage(key, value) {
@@ -92,7 +94,7 @@ export class GetCardName {
     return localStorage.getItem(key);
   }
 
-  fillContent(e, answ) {
+   fillContent(e, answ) {
     
     if (this.getItemFromStorage("timer")) {
       this.isTimerOn = true;

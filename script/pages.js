@@ -41,6 +41,7 @@ export const Artists = {
       <div class="artists__cards flex flex-jc-c">
 
       <div class="artists__cards__card grey portrait">
+     
         <img src="./assets/full/0full.jpg" alt="" />
         <p class="artists__cards__card__title">Portrait</p>
         <a href="#artgame" class="fill-div hash"></a>
