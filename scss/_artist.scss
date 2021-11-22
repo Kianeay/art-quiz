@@ -111,13 +111,14 @@
       margin: 0 5px;
       border: 1px solid #bbb;
       background-color: white;
-      cursor: pointer;
+   
+      background-color: rgb(241, 146, 146);
 
       &.red {
-        background-color: $submain;
+        background-color: rgb(241, 146, 146);
       }
       &.green {
-        background-color: green;
+        background-color: rgb(165, 238, 165);
       }
     }
   }

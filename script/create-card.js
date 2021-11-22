@@ -5,6 +5,8 @@ export class GetCardName {
     this.cards = document.querySelectorAll(".artists__cards__card");
     this.nodeAnswers = null;
     this.modal = document.querySelector(".modal-wrap");
+    this.lists = document.querySelectorAll(".artgame__controls__list");
+    this.changeArtistPage = true;
 
     this.imgNumber = 0;
     this.cardName = "";
@@ -26,14 +28,16 @@ export class GetCardName {
       industrial: [],
     };
 
+    this.picBreak = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
+
     this.cards.forEach((el) => {
       el.addEventListener("click", (e) => this.init(e), { once: true });
     });
 
     this.checkCards();
-        this.cards.forEach((el) => {
+ /*    this.cards.forEach((el) => {
       el.removeEventListener("click", (e) => this.init(e), { once: true });
-    }); 
+    }); */
   }
 
   checkCards() {
@@ -51,9 +55,9 @@ export class GetCardName {
   }
 
   init(e) {
-       e.stopPropagation(); 
+    e.stopPropagation();
 
-       /*  this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString();  */
+    /*  this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString();  */
     this.cardName = e.currentTarget.className.split(" ");
     this.cardName = this.cardName[this.cardName.length - 1];
 
@@ -73,97 +77,101 @@ export class GetCardName {
   }
 
   fillContent(e, answ) {
-    console.log("fillcont");
     this.modal.classList.add("none");
-     if (e) {
+    /*    if (e) {
       e.preventDefault();
       e.stopPropagation();
-    }
+    } */
 
     this.lists = document.querySelectorAll(".artgame__controls__list");
-    console.log(this.types);
-
-  /*   this.lists.forEach((el, i) => {
-     
-      for (let j = 0; j < this.types[this.cardName].length; j++) {
-        if (i + 1 === this.types[this.cardName][j].slice(-1)) {
-          el.classList.add("green");
-        }
-      }
-    }); 
- */
-   
     this.answers = [];
 
     if (!this.cardName) {
       this.cardName = this.getItemFromStorage("cardName");
     }
 
-if (!this.imgNumber) {
-  switch (this.cardName) {
-    case "portrait":
-      this.imgNumber = 0;
-      break;
+    this.lists.forEach((el, i) => {
+      for (let j = 0; j < this.types[this.cardName].length; j++) {
+        let char = this.types[this.cardName][j].toString();
 
-    case "landscape":
-      this.imgNumber = 11;
-      break;
+        if (this.cardName !== "portrait") {
+          char = char.slice(-1);
+        }
+        if (i == char) {
+         
+          el.classList.add("green");
+        } else {
+          el.classList.add("red");
+        }
+      }
+    });
 
-    case "stillLife":
-      this.imgNumber = 21;
-      break;
+    if (!this.imgNumber) {
+      switch (this.cardName) {
+        case "portrait":
+          this.imgNumber = 0;
+          break;
 
-    case "graphic":
-      this.imgNumber = 31;
-      break;
+        case "landscape":
+          this.imgNumber = 11;
+          break;
 
-    case "antique":
-      this.imgNumber = 41;
-      break;
+        case "stillLife":
+          this.imgNumber = 21;
+          break;
 
-    case "avantGarde":
-      this.imgNumber = 51;
-      break;
+        case "graphic":
+          this.imgNumber = 31;
+          break;
 
-    case "renaissance":
-      this.imgNumber = 61;
-      break;
+        case "antique":
+          this.imgNumber = 41;
+          break;
 
-    case "surrealism":
-      this.imgNumber = 71;
-      break;
+        case "avantGarde":
+          this.imgNumber = 51;
+          break;
 
-    case "kitsch":
-      this.imgNumber = 81;
-      break;
+        case "renaissance":
+          this.imgNumber = 61;
+          break;
 
-    case "minimalism":
-      this.imgNumber = 91;
-      break;
+        case "surrealism":
+          this.imgNumber = 71;
+          break;
 
-    case "avangard":
-      this.imgNumber = 101;
-      break;
+        case "kitsch":
+          this.imgNumber = 81;
+          break;
 
-    case "industrial":
-      this.imgNumber = 111;
-      break;
-  }
-}
+        case "minimalism":
+          this.imgNumber = 91;
+          break;
 
- /*    if (answ === false) {
+        case "avangard":
+          this.imgNumber = 101;
+          break;
+
+        case "industrial":
+          this.imgNumber = 111;
+          break;
+      }
+    }
+
+    if (answ === false) {
       this.imgNumber++;
     }
-    console.log(this.imgNumber); */
 
+    this.checkLastImg();
     while (
       JSON.parse(this.getItemFromStorage("types"))[this.cardName].indexOf(
         this.imgNumber
       ) !== -1
     ) {
+      this.checkLastImg();
       this.imgNumber++;
-           this.fillContent();
-        return;
+      /*    this.fillContent();
+      return; */
     }
     this.img = document.querySelector(".artgame__img-wrap__img");
     this.img.src = `./assets/img/${this.imgNumber}.jpg`;
@@ -187,26 +195,43 @@ if (!this.imgNumber) {
       el.textContent = this.answers[i];
     });
 
+    document.querySelector(".artgame__answers").addEventListener(
+      "click",
+      (e) => {
+        let target = e.target;
+        let text = target.textContent;
 
-    document.querySelector('.artgame__answers').addEventListener('click', (e) => {
-      let target = e.target;
-      let text = target.textContent;
-   
-      if (target.tagName != "BUTTON") return;
-      this.fillModal(e, text)
-    }, {
-      once: true,
-    })
+        if (target.tagName != "BUTTON") return;
+        this.fillModal(e,text);
+      },
+      {
+        once: true,
+      }
+    );
+  }
+
+  checkLastImg() {
+    console.log(this.imgNumber);
+    console.log(this.changeArtistPage);
+    if (
+      this.picBreak.indexOf(this.imgNumber) !== -1 &&
+      this.changeArtistPage === false
+    ) {
+      /*  this.changeArtistPage = true; */
+      window.location.hash = "artists";
+    }
   }
 
   fillModal(e, text) {
-  /*      e.preventDefault();
+    /*      e.preventDefault();
     e.stopPropagation();  */
+    this.changeArtistPage = false;
 
     let answ = true;
-    
+console.log(text);
+console.log(this.answer);
     this.modalIcon = document.querySelector(".modal__icon");
-    this.types = JSON.parse(this.getItemFromStorage("types")); 
+    this.types = JSON.parse(this.getItemFromStorage("types"));
     this.modalImg = document.querySelector(".modal__img-wrap__img");
     this.modalImg.src = `./assets/img/${this.imgNumber}.jpg`;
 
@@ -218,17 +243,39 @@ if (!this.imgNumber) {
     this.modalText = document.querySelectorAll(".modal__info__text");
     this.modalText.forEach((el, i) => {
       el.textContent = picInfo[i];
-    }); 
-  
-    this.modal = document.querySelector(".modal-wrap");
+    });
+
     this.modal.classList.remove("none");
     this.modalBtn = document.querySelector(".modal__btn");
+    /*   this.types[this.cardName].length === 9 */
+
+    console.log(this.imgNumber);
+    /*     if (this.changeArtistPage === true) {
+      this.modalBtn.addEventListener(
+        "click",
+        () => {
+          window.location.hash = "artists";
+          this.modal.classList.add("none");
+          this.changeArtistPage = false;
+        },
+        {
+          once: true,
+        }
+      );
+    } else {
+      this.modalBtn.addEventListener(
+        "click",
+        (e) => this.fillContent(e, answ),
+        {
+          once: true,
+        }
+      );
+    } */
 
     this.modalBtn.addEventListener("click", (e) => this.fillContent(e, answ), {
       once: true,
     });
-  
-    
+
     if (text === this.answer) {
       this.modalIcon.classList.remove("wrong");
       this.modalIcon.classList.add("correct");
@@ -246,8 +293,7 @@ if (!this.imgNumber) {
       this.modalIcon.classList.remove("correct");
       this.modalIcon.classList.add("wrong");
       answ = false;
-     
-    } 
+    }
   }
 
   randomInteger(min, max) {

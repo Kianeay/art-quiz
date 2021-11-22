@@ -340,15 +340,15 @@ ul {
   margin: 0 5px;
   border: 1px solid #bbb;
   background-color: white;
-  cursor: pointer;
+  background-color: #f19292;
 }
 
 .artgame__controls__list.red {
-  background-color: #d30920;
+  background-color: #f19292;
 }
 
 .artgame__controls__list.green {
-  background-color: green;
+  background-color: #a5eea5;
 }
 
 .modal-wrap {
