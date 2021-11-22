@@ -1,15 +1,16 @@
 import images from "./images.js";
 import Timer from "./timer.js";
 
-export class GetCardName {
+export class DrawImgCard {
   constructor() {
     this.cards = document.querySelectorAll(".artists__cards__card");
     this.nodeAnswers = null;
     this.modal = document.querySelector(".modal-wrap");
-    this.lists = document.querySelectorAll(".artgame__controls__list");
+    this.imgLists = document.querySelectorAll(".artgame__img-wrap__img");
     this.changeArtistPage = true;
+    this.title = document.querySelector(".artgame__title");
 
-    this.imgNumber = 0;
+    this.imgNumber = 130;
     this.cardName = "";
     this.answer = "";
     this.answers = [];
@@ -21,7 +22,7 @@ export class GetCardName {
       onFinish: () => this.fillModal(),
     });
 
-    this.types = {
+    this.imgTypes = {
       portrait: [],
       landscape: [],
       stillLife: [],
@@ -36,13 +37,11 @@ export class GetCardName {
       industrial: [],
     };
 
-    this.picBreak = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
+    this.picBreak = [130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 40];
 
     this.cards.forEach((el) => {
       el.addEventListener("click", (e) => this.init(e), { once: true });
     });
-
-    
 
     this.checkCards();
     /*    this.cards.forEach((el) => {
@@ -51,13 +50,13 @@ export class GetCardName {
   }
 
   checkCards() {
-    if (JSON.parse(this.getItemFromStorage("types"))) {
-      this.types = JSON.parse(this.getItemFromStorage("types"));
+    if (JSON.parse(this.getItemFromStorage("imgTypes"))) {
+      this.imgTypes = JSON.parse(this.getItemFromStorage("imgTypes"));
 
       this.cards.forEach((el) => {
         let text = el.className.split(" ");
         text = text[text.length - 1];
-        if (this.types[text].length !== 0) {
+        if (this.imgTypes[text].length !== 0) {
           el.classList.remove("grey");
         }
       });
@@ -79,8 +78,8 @@ export class GetCardName {
 
     this.setLocalStorage("cardName", this.cardName);
 
-    if (!this.getItemFromStorage("types")) {
-      this.setLocalStorage("types", JSON.stringify(this.types));
+    if (!this.getItemFromStorage("imgTypes")) {
+      this.setLocalStorage("imgTypes", JSON.stringify(this.imgTypes));
     }
   }
 
@@ -93,7 +92,6 @@ export class GetCardName {
   }
 
   fillContent(e, answ) {
-    
     if (this.getItemFromStorage("timer")) {
       this.isTimerOn = true;
     } else {
@@ -115,12 +113,14 @@ export class GetCardName {
     }
 
     this.lists.forEach((el, i) => {
-      for (let j = 0; j < this.types[this.cardName].length; j++) {
-        let char = this.types[this.cardName][j].toString();
+      for (let j = 0; j < this.imgTypes[this.cardName].length; j++) {
+        let char = this.imgTypes[this.cardName][j].toString();
 
-        if (this.cardName !== "portrait") {
+      
           char = char.slice(-1);
-        }
+        
+        console.log(i);
+        console.log(char);
         if (i == char) {
           el.classList.add("green");
         } else {
@@ -129,54 +129,54 @@ export class GetCardName {
       }
     });
 
-    if (!this.imgNumber) {
+    if (this.imgNumber) {
       switch (this.cardName) {
         case "portrait":
-          this.imgNumber = 0;
+          this.imgNumber = 130;
           break;
 
         case "landscape":
-          this.imgNumber = 11;
+          this.imgNumber = 140;
           break;
 
         case "stillLife":
-          this.imgNumber = 21;
+          this.imgNumber = 150;
           break;
 
         case "graphic":
-          this.imgNumber = 31;
+          this.imgNumber = 160;
           break;
 
         case "antique":
-          this.imgNumber = 41;
+          this.imgNumber = 170;
           break;
 
         case "avantGarde":
-          this.imgNumber = 51;
+          this.imgNumber = 180;
           break;
 
         case "renaissance":
-          this.imgNumber = 61;
+          this.imgNumber = 190;
           break;
 
         case "surrealism":
-          this.imgNumber = 71;
+          this.imgNumber = 200;
           break;
 
         case "kitsch":
-          this.imgNumber = 81;
+          this.imgNumber = 210;
           break;
 
         case "minimalism":
-          this.imgNumber = 91;
+          this.imgNumber = 220;
           break;
 
         case "avangard":
-          this.imgNumber = 101;
+          this.imgNumber = 230;
           break;
 
         case "industrial":
-          this.imgNumber = 111;
+          this.imgNumber = 40;
           break;
       }
     }
@@ -187,42 +187,50 @@ export class GetCardName {
 
     this.checkLastImg();
     while (
-      JSON.parse(this.getItemFromStorage("types"))[this.cardName].indexOf(
+      JSON.parse(this.getItemFromStorage("imgTypes"))[this.cardName].indexOf(
         this.imgNumber
       ) !== -1
     ) {
       this.checkLastImg();
       this.imgNumber++;
     }
-    this.img = document.querySelector(".artgame__img-wrap__img");
-    this.img.src = `./assets/img/${this.imgNumber}.jpg`;
+    /*   this.img = document.querySelector(".artgame__img-wrap__img");
+    this.img.src = `./assets/img/${this.imgNumber}.jpg`; */
 
-    this.answer = images[this.imgNumber]["author"];
+    this.answer = images[this.imgNumber]["imageNum"];
+    this.answerAuthor = images[this.imgNumber]["author"];
+  
+    this.title = document.querySelector(".artgame__title");
+    this.title.textContent = `Какую картину написал ${this.answerAuthor}?`;
 
     this.answers.push(this.answer);
 
     while (this.answers.length < 4) {
       let authorNum = this.randomInteger(0, 200);
-      let author = images[authorNum]["author"];
+      let author = images[authorNum]["imageNum"];
       if (this.answers.indexOf(author) === -1) {
         this.answers.push(author);
       }
     }
+ 
     this.answers = this.answers.sort(() => Math.random() - 0.5);
 
-    this.nodeAnswers = document.querySelectorAll(".artgame__answers__answer");
-
-    this.nodeAnswers.forEach((el, i) => {
-      el.textContent = this.answers[i];
+    /*  this.nodeAnswers = document.querySelectorAll(".artgame__answers__answer"); */
+    this.imgLists = document.querySelectorAll(".artgame__img-wrap__img");
+    this.imgLists.forEach((el, i) => {
+      /*   el.textContent = this.answers[i]; */
+     
+      el.src = `./assets/img/${this.answers[i]}.jpg`;
     });
 
     document.querySelector(".artgame__answers").addEventListener(
       "click",
       (e) => {
         let target = e.target;
-        let text = target.textContent;
-
-        if (target.tagName != "BUTTON") return;
+        let text = target.src.split("/");
+        text = text[text.length - 1];
+        text = text.substring(0, text.length - 4);
+        if (target.tagName != "IMG") return;
         this.fillModal(e, text);
       },
       {
@@ -236,7 +244,7 @@ export class GetCardName {
       this.picBreak.indexOf(this.imgNumber) !== -1 &&
       this.changeArtistPage === false
     ) {
-      window.location.hash = "artists";
+      window.location.hash = "pictures";
     }
   }
 
@@ -246,7 +254,7 @@ export class GetCardName {
     let answ = true;
 
     this.modalIcon = document.querySelector(".modal__icon");
-    this.types = JSON.parse(this.getItemFromStorage("types"));
+    this.imgTypes = JSON.parse(this.getItemFromStorage("imgTypes"));
     this.modalImg = document.querySelector(".modal__img-wrap__img");
     this.modalImg.src = `./assets/img/${this.imgNumber}.jpg`;
 
@@ -272,13 +280,13 @@ export class GetCardName {
       this.modalIcon.classList.add("correct");
 
       if (
-        this.types[this.getItemFromStorage("cardName")].indexOf(
+        this.imgTypes[this.getItemFromStorage("cardName")].indexOf(
           this.imgNumber
         ) === -1
       ) {
         answ = true;
-        this.types[this.getItemFromStorage("cardName")].push(this.imgNumber);
-        this.setLocalStorage("types", JSON.stringify(this.types));
+        this.imgTypes[this.getItemFromStorage("cardName")].push(this.imgNumber);
+        this.setLocalStorage("imgTypes", JSON.stringify(this.imgTypes));
       }
     } else {
       this.modalIcon.classList.remove("correct");

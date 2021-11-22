@@ -30,8 +30,6 @@ export const Main = {
   },
 };
 
-
-
 export const Artists = {
   id: "artists",
   title: "Artists quiz",
@@ -156,12 +154,132 @@ export const ArtistGame = {
   },
 };
 
+
 export const Pictures = {
   id: "pictures",
+  title: "Artists quiz",
+  render: (className = "container", ...rest) => {
+    return `
+      <div class="${className}">
+  
+      <div class="wrapper">
+      <div class="artists__cards flex flex-jc-c">
+
+      <div class="artists__cards__card grey portrait">
+        <img src="./assets/full/130full.jpg" alt="" />
+        <p class="artists__cards__card__title">Portrait</p>
+        <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey landscape">
+        <img src="./assets/full/140full.jpg" alt="" />
+        <p class="artists__cards__card__title">landscape</p>
+        <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey stillLife">
+      <img src="./assets/full/150full.jpg" alt="" />
+      <p class="artists__cards__card__title">still life</p>
+      <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey graphic">
+      <img src="./assets/full/160full.jpg" alt="" />
+      <p class="artists__cards__card__title">graphic</p>
+      <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey antique">
+      <img src="./assets/full/170full.jpg" alt="" />
+      <p class="artists__cards__card__title">antique</p>
+      <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey avantGarde">
+      <img src="./assets/full/180full.jpg" alt="" />
+      <p class="artists__cards__card__title">avant-garde</p>
+      <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey renaissance">
+      <img src="./assets/full/190full.jpg" alt="" />
+      <p class="artists__cards__card__title">renaissance</p>
+      <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey surrealism">
+      <img src="./assets/full/200full.jpg" alt="" />
+      <p class="artists__cards__card__title">surrealism</p>
+      <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey kitsch">
+      <img src="./assets/full/210full.jpg" alt="" />
+      <p class="artists__cards__card__title">kitsch</p>
+      <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey minimalism">
+      <img src="./assets/full/220full.jpg" alt="" />
+      <p class="artists__cards__card__title">minimalism</p>
+      <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey avangard">
+      <img src="./assets/full/230full.jpg" alt="" />
+      <p class="artists__cards__card__title">avangard</p>
+      <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+      <div class="artists__cards__card grey industrial">
+      <img src="./assets/full/40full.jpg" alt="" />
+      <p class="artists__cards__card__title">industrial</p>
+      <a href="#picturesgame" class="fill-div hash"></a>
+      </div>
+
+    </div>
+      </div>
+          `;
+  },
+};
+
+export const PicturesGame = {
+  id: "pictures-game",
   title: "Pictures quiz",
   render: (className = "container", ...rest) => {
     return `
-         
+    <div class="wrapper">
+    <div class="${className}">
+      <h2 class="artgame__title">Какую картину написал?</h2>
+
+      <ul class="artgame__controls">
+      <li class="artgame__controls__list"></li>
+      <li class="artgame__controls__list"></li>
+      <li class="artgame__controls__list"></li>
+      <li class="artgame__controls__list"></li>
+      <li class="artgame__controls__list"></li>
+      <li class="artgame__controls__list"></li>
+      <li class="artgame__controls__list"></li>
+      <li class="artgame__controls__list"></li>
+      <li class="artgame__controls__list"></li>
+      <li class="artgame__controls__list"></li>
+    </ul>
+      <div class="artgame__answers">
+      <div class="artgame__img-wrap">
+        <img class="artgame__img-wrap__img" src="" alt="">
+      </div>
+      <div class="artgame__img-wrap">
+      <img class="artgame__img-wrap__img" src="" alt="">
+    </div>
+    <div class="artgame__img-wrap">
+    <img class="artgame__img-wrap__img" src="" alt="">
+  </div>
+  <div class="artgame__img-wrap">
+  <img class="artgame__img-wrap__img" src="" alt="">
+</div>
+      </div>
+    </div>
+  </div>   
           `;
   },
 };
@@ -173,7 +291,7 @@ export const Settings = {
     return `
     <div class="${className}">
     <div class="wrapper">
-      <fieldset style="border: none;">
+      <fieldset style="border: none;display: flex;justify-content: center;">
       <input class="time-check" type="checkbox"</input>
         <label for="rangeVal">Таймер:</label>
      

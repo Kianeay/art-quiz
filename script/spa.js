@@ -1,8 +1,17 @@
 import { Header, Content, Footer } from "./components.js";
 import { GetCardName } from "./create-card.js";
+import { DrawImgCard } from "./create-img.js";
 
-import { Main, Artists, Pictures, Settings, Scores, ArtistGame } from "./pages.js";
 
+import {
+  Main,
+  Artists,
+  Pictures,
+  Settings,
+  Scores,
+  ArtistGame,
+  PicturesGame,
+} from "./pages.js";
 
 export const components = {
   header: Header,
@@ -18,6 +27,8 @@ export const routes = {
   settings: Settings,
   scores: Scores,
   artgame: ArtistGame,
+  pictures: Pictures,
+  picturesgame: PicturesGame,
   /*    
     login: Login,
     error: ErrorPage, */
@@ -32,7 +43,7 @@ export const mySPA = (function () {
     let myModuleContainer = null;
     let contentContainer = null;
     let routesObj = null;
-
+    let imgCards = null;
     let cardName = null;
 
     this.init = function (container, routes) {
@@ -48,45 +59,63 @@ export const mySPA = (function () {
         routeName = pageName in routes ? pageName : "error";
       }
       window.document.title = routesObj[routeName].title;
-      contentContainer.innerHTML = routesObj[routeName].render(
-        `${routeName}`
-      );
+      contentContainer.innerHTML = routesObj[routeName].render(`${routeName}`);
       this.updateLink(routesObj[routeName].id);
 
-      if (pageName === 'artists') {
+      if (pageName === "artists") {
         cardName = new GetCardName();
-       
-       } else if ((pageName === 'artgame')) {
+        if (cardName) cardName.stopTimer();
+      } else if (pageName === "artgame") {
         if (!cardName) cardName = new GetCardName();
         cardName.fillContent();
-       }  else if ((pageName === 'settings')) {
-        document.querySelector('#rangeVal').addEventListener('input', function () {
-          if (document.querySelector('.time-check').checked) {
-            localStorage.setItem('timer', document.querySelector('#rangeVal').value);
+      } else if (pageName === "settings") {
+        if (cardName) cardName.stopTimer();
+        let timeCheck = document.querySelector(".time-check");
+        let timeRange = document.querySelector("#rangeVal");
+        if (localStorage.getItem("timer")) {
+          timeCheck.checked = true;
+        } else {
+          timeCheck.checked = false;
+        }
+        timeRange.addEventListener("input", function () {
+          if (timeCheck.checked) {
+            localStorage.setItem("timer", timeRange.value);
           } else {
-            localStorage.removeItem('timer');
+            localStorage.removeItem("timer");
           }
-        })
+        });
 
-        document.querySelector('.time-check').addEventListener('input', function () {
-          if (document.querySelector('.time-check').checked) {
-            localStorage.setItem('timer', document.querySelector('#rangeVal').value);
+        timeCheck.addEventListener("input", function () {
+          if (document.querySelector(".time-check").checked) {
+            localStorage.setItem("timer", timeRange.value);
           } else {
-            localStorage.removeItem('timer');
+            localStorage.removeItem("timer");
           }
-        })
-       }
+        });
+      } else if (pageName === "main") {
+        if (cardName) cardName.stopTimer();
+      } else if (pageName === "scores") {
+        if (cardName) cardName.stopTimer();
+
+      } else if (pageName === "pictures") {
+        if (cardName) cardName.stopTimer();
+        imgCards = new DrawImgCard();
+      } else if (pageName === "picturesgame") {
+       
+        if (!imgCards) imgCards = new DrawImgCard();
+        imgCards.fillContent();
+      }
     };
 
     this.updateLink = function (currentPage) {
-        let links = document.querySelectorAll(".header__menu__link");
-  
-        for (let link of links) {
-          currentPage === link.getAttribute("href").slice(1)
-            ? link.classList.add("active")
-            : link.classList.remove("active");
-        }
-      };
+      let links = document.querySelectorAll(".header__menu__link");
+
+      for (let link of links) {
+        currentPage === link.getAttribute("href").slice(1)
+          ? link.classList.add("active")
+          : link.classList.remove("active");
+      }
+    };
   }
 
   //        end view
@@ -100,8 +129,8 @@ export const mySPA = (function () {
     };
 
     this.update = function (pageName) {
-        myView.renderContent(pageName);
-      };
+      myView.renderContent(pageName);
+    };
   }
 
   //      end model
@@ -112,27 +141,19 @@ export const mySPA = (function () {
     let myModel = null;
     let pageName = null;
 
-   
-
     this.init = function (container, model) {
       myModuleContainer = container;
       myModel = model;
-
-      
-     
 
       window.addEventListener("hashchange", this.update);
       this.update();
     };
 
     this.update = function () {
-        /* const pageName = window.location.hash.slice(1).toLowerCase(); */
-        pageName = window.location.hash.slice(1).toLowerCase();
-        myModel.update(pageName);
-
-     
-      };
-
+      /* const pageName = window.location.hash.slice(1).toLowerCase(); */
+      pageName = window.location.hash.slice(1).toLowerCase();
+      myModel.update(pageName);
+    };
   }
   //    end controller
 
