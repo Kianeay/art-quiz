@@ -59,7 +59,22 @@ export const mySPA = (function () {
        } else if ((pageName === 'artgame')) {
         if (!cardName) cardName = new GetCardName();
         cardName.fillContent();
+       }  else if ((pageName === 'settings')) {
+        document.querySelector('#rangeVal').addEventListener('input', function () {
+          if (document.querySelector('.time-check').checked) {
+            localStorage.setItem('timer', document.querySelector('#rangeVal').value);
+          } else {
+            localStorage.removeItem('timer');
+          }
+        })
 
+        document.querySelector('.time-check').addEventListener('input', function () {
+          if (document.querySelector('.time-check').checked) {
+            localStorage.setItem('timer', document.querySelector('#rangeVal').value);
+          } else {
+            localStorage.removeItem('timer');
+          }
+        })
        }
     };
 

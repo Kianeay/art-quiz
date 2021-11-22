@@ -1,4 +1,6 @@
 import images from "./images.js";
+import Timer from "./timer.js";
+
 
 export class GetCardName {
   constructor() {
@@ -12,6 +14,8 @@ export class GetCardName {
     this.cardName = "";
     this.answer = "";
     this.answers = [];
+
+    this.myTimer =  Timer({timeout: 10, size: 30, onFinish: () => this.fillModal()});
 
     this.types = {
       portrait: [],
@@ -33,6 +37,8 @@ export class GetCardName {
     this.cards.forEach((el) => {
       el.addEventListener("click", (e) => this.init(e), { once: true });
     });
+
+
 
     this.checkCards();
  /*    this.cards.forEach((el) => {
@@ -66,6 +72,8 @@ export class GetCardName {
     if (!this.getItemFromStorage("types")) {
       this.setLocalStorage("types", JSON.stringify(this.types));
     }
+
+  
   }
 
   setLocalStorage(key, value) {
@@ -77,6 +85,9 @@ export class GetCardName {
   }
 
   fillContent(e, answ) {
+    document.querySelector('.artgame').append(this.myTimer.component);
+    this.myTimer.start()
+
     this.modal.classList.add("none");
     /*    if (e) {
       e.preventDefault();
@@ -211,8 +222,6 @@ export class GetCardName {
   }
 
   checkLastImg() {
-    console.log(this.imgNumber);
-    console.log(this.changeArtistPage);
     if (
       this.picBreak.indexOf(this.imgNumber) !== -1 &&
       this.changeArtistPage === false
@@ -228,8 +237,7 @@ export class GetCardName {
     this.changeArtistPage = false;
 
     let answ = true;
-console.log(text);
-console.log(this.answer);
+
     this.modalIcon = document.querySelector(".modal__icon");
     this.types = JSON.parse(this.getItemFromStorage("types"));
     this.modalImg = document.querySelector(".modal__img-wrap__img");
