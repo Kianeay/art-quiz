@@ -35,7 +35,7 @@ export const Footer = {
       <ul>
         <li>
           <a
-            href="https://github.com/Kianeay/"
+            href="#"
             target=" _blank"
             ><img src="assets/github_PNG40.png" alt="git logo"
           /></a>

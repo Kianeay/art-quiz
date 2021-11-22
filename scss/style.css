@@ -321,6 +321,36 @@ ul {
   background-color: #DD7C48;
 }
 
+.artgame__controls {
+  list-style-type: square;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 10px;
+}
+
+.artgame__controls__list {
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  border: 1px solid #bbb;
+  background-color: white;
+  cursor: pointer;
+}
+
+.artgame__controls__list.red {
+  background-color: #d30920;
+}
+
+.artgame__controls__list.green {
+  background-color: green;
+}
+
 .modal-wrap {
   display: -webkit-box;
   display: -ms-flexbox;

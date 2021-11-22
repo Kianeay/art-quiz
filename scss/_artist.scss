@@ -96,4 +96,29 @@
       }
     }
   }
+
+  &__controls {
+    list-style-type: square;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+   
+    &__list {
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      margin: 0 5px;
+      border: 1px solid #bbb;
+      background-color: white;
+      cursor: pointer;
+
+      &.red {
+        background-color: $submain;
+      }
+      &.green {
+        background-color: green;
+      }
+    }
+  }
 }

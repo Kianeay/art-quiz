@@ -131,6 +131,18 @@ export const ArtistGame = {
         <div class="artgame__img-wrap">
           <img class="artgame__img-wrap__img" src="" alt="">
         </div>
+        <ul class="artgame__controls">
+        <li class="artgame__controls__list"></li>
+        <li class="artgame__controls__list"></li>
+        <li class="artgame__controls__list"></li>
+        <li class="artgame__controls__list"></li>
+        <li class="artgame__controls__list"></li>
+        <li class="artgame__controls__list"></li>
+        <li class="artgame__controls__list"></li>
+        <li class="artgame__controls__list"></li>
+        <li class="artgame__controls__list"></li>
+        <li class="artgame__controls__list"></li>
+      </ul>
         <div class="artgame__answers">
           <button class="artgame__answers__answer">first</button>
           <button class="artgame__answers__answer">sec</button>
