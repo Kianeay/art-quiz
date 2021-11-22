@@ -12,7 +12,7 @@ export const Header = {
           <nav class="header__menu">
             <a class="button header__menu__link" href="#main">Главная</a>
             <a class="button header__menu__link" href="#settings">Настройки</a>
-            <a class="button header__menu__link" href="#score">Счет</a>
+            <a class="button header__menu__link" href="#scores">Счет</a>
           </nav>
         </div>
       </div>
