@@ -181,7 +181,18 @@ export const Scores = {
   title: "quiz scores",
   render: (className = "container", ...rest) => {
     return `
-         
+    <div class="${className}">
+    <div class="wrapper">
+      <fieldset style="border: none;">
+        <label for="rangeVal">Таймер:</label>
+        <input type="range" min='5' max='30' step="5"
+            oninput="document.getElementById('rangeValLabel').innerHTML = this.value;"
+            step="1" name="rangeVal" id="rangeVal" value="30">
+        </input>
+        <em id="rangeValLabel" style="font-style: normal;"></em>
+    </fieldset>
+    </div>
+  </div>
           `;
   },
 };
