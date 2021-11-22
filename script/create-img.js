@@ -37,7 +37,7 @@ export class DrawImgCard {
       industrial: [],
     };
 
-    this.picBreak = [130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 40];
+    this.picBreak = [140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 40];
 
     this.cards.forEach((el) => {
       el.addEventListener("click", (e) => this.init(e), { once: true });
@@ -115,10 +115,7 @@ export class DrawImgCard {
     this.lists.forEach((el, i) => {
       for (let j = 0; j < this.imgTypes[this.cardName].length; j++) {
         let char = this.imgTypes[this.cardName][j].toString();
-
-      
-          char = char.slice(-1);
-        
+        char = char.slice(-1);
         console.log(i);
         console.log(char);
         if (i == char) {
@@ -199,7 +196,7 @@ export class DrawImgCard {
 
     this.answer = images[this.imgNumber]["imageNum"];
     this.answerAuthor = images[this.imgNumber]["author"];
-  
+
     this.title = document.querySelector(".artgame__title");
     this.title.textContent = `Какую картину написал ${this.answerAuthor}?`;
 
@@ -212,14 +209,14 @@ export class DrawImgCard {
         this.answers.push(author);
       }
     }
- 
+
     this.answers = this.answers.sort(() => Math.random() - 0.5);
 
     /*  this.nodeAnswers = document.querySelectorAll(".artgame__answers__answer"); */
     this.imgLists = document.querySelectorAll(".artgame__img-wrap__img");
     this.imgLists.forEach((el, i) => {
       /*   el.textContent = this.answers[i]; */
-     
+
       el.src = `./assets/img/${this.answers[i]}.jpg`;
     });
 
