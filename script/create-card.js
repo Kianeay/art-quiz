@@ -54,7 +54,10 @@ export class GetCardName {
   init(e) {
     e.stopPropagation();
 
-    this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString();
+ /*    this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString(); */
+    this.cardName = e.currentTarget.className.split(" ");
+    this.cardName = this.cardName[this.cardName.length - 1];
+ 
     this.setLocalStorage("cardName", this.cardName);
 
     if (!this.getItemFromStorage("types")) {

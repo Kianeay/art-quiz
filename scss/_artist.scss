@@ -54,9 +54,9 @@
   }
 
   &__img-wrap {
-    width: 400px;
+    max-width: 400px;
     height: 300px;
-    background-color: aquamarine;
+    width: 100%;
 
     &__img {
       object-fit: cover;
@@ -74,20 +74,25 @@
     margin-top: 20px;
 
     &__answer {
-      background-color: $main;
+      /*  background-color: $main; */
       border-radius: 5px;
       outline: none;
       border: none;
-      width: 200px;
+      max-width: 200px;
       height: 50px;
       cursor: pointer;
-
-      &:active {
-        background-color: $orange;
-      }
+      width: 100%;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &:hover {
-        background-color: $submain;
+        background-color: $main;
+
+        &:active {
+          background-color: $orange;
+        }
       }
     }
   }

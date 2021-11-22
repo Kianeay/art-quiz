@@ -124,7 +124,7 @@ ul {
 }
 
 .header__logo-wrap__logo {
-  width: 100px;
+  width: 80px;
 }
 
 .main__cards {
@@ -265,9 +265,9 @@ ul {
 }
 
 .artgame__img-wrap {
-  width: 400px;
+  max-width: 400px;
   height: 300px;
-  background-color: aquamarine;
+  width: 100%;
 }
 
 .artgame__img-wrap__img {
@@ -293,21 +293,32 @@ ul {
 }
 
 .artgame__answers__answer {
-  background-color: #D34252;
+  /*  background-color: $main; */
   border-radius: 5px;
   outline: none;
   border: none;
-  width: 200px;
+  max-width: 200px;
   height: 50px;
   cursor: pointer;
-}
-
-.artgame__answers__answer:active {
-  background-color: #DD7C48;
+  width: 100%;
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .artgame__answers__answer:hover {
-  background-color: #d30920;
+  background-color: #D34252;
+}
+
+.artgame__answers__answer:hover:active {
+  background-color: #DD7C48;
 }
 
 .modal-wrap {
