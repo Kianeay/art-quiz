@@ -31,9 +31,9 @@ export class GetCardName {
     });
 
     this.checkCards();
-    /*    this.cards.forEach((el) => {
+        this.cards.forEach((el) => {
       el.removeEventListener("click", (e) => this.init(e), { once: true });
-    }); */
+    }); 
   }
 
   checkCards() {
@@ -51,9 +51,9 @@ export class GetCardName {
   }
 
   init(e) {
-    /*   e.stopPropagation(); */
+       e.stopPropagation(); 
 
-    /*    this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString(); */
+       /*  this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString();  */
     this.cardName = e.currentTarget.className.split(" ");
     this.cardName = this.cardName[this.cardName.length - 1];
 
@@ -72,18 +72,18 @@ export class GetCardName {
     return localStorage.getItem(key);
   }
 
-  fillContent(/* e, answ */) {
+  fillContent(e, answ) {
     console.log("fillcont");
     this.modal.classList.add("none");
-    /* if (e) {
+     if (e) {
       e.preventDefault();
       e.stopPropagation();
     }
 
-/*     this.lists = document.querySelectorAll(".artgame__controls__list");
+    this.lists = document.querySelectorAll(".artgame__controls__list");
     console.log(this.types);
 
-    this.lists.forEach((el, i) => {
+  /*   this.lists.forEach((el, i) => {
      
       for (let j = 0; j < this.types[this.cardName].length; j++) {
         if (i + 1 === this.types[this.cardName][j].slice(-1)) {
@@ -91,7 +91,7 @@ export class GetCardName {
         }
       }
     }); 
-
+ */
    
     this.answers = [];
 
@@ -151,10 +151,10 @@ if (!this.imgNumber) {
   }
 }
 
-    if (answ === false) {
+ /*    if (answ === false) {
       this.imgNumber++;
     }
-    console.log(this.imgNumber);
+    console.log(this.imgNumber); */
 
     while (
       JSON.parse(this.getItemFromStorage("types"))[this.cardName].indexOf(
@@ -162,7 +162,7 @@ if (!this.imgNumber) {
       ) !== -1
     ) {
       this.imgNumber++;
-      /*     this.fillContent();
+           this.fillContent();
         return;
     }
     this.img = document.querySelector(".artgame__img-wrap__img");
@@ -179,36 +179,34 @@ if (!this.imgNumber) {
         this.answers.push(author);
       }
     }
-    this.answers = this.answers.sort(() => Math.random() - 0.5); */
+    this.answers = this.answers.sort(() => Math.random() - 0.5);
 
     this.nodeAnswers = document.querySelectorAll(".artgame__answers__answer");
 
     this.nodeAnswers.forEach((el, i) => {
       el.textContent = this.answers[i];
     });
+
+
     document.querySelector('.artgame__answers').addEventListener('click', (e) => {
       let target = e.target;
-      console.log(target.tagName);
-      if (target.tagName != "BUTTON") return;
-      this.fillModal()
-    })
-
-/*     this.nodeAnswers.forEach((el) => {
-      el.addEventListener("click", (e) => this.fillModal(e), { once: true });
-    }); */
-
+      let text = target.textContent;
    
+      if (target.tagName != "BUTTON") return;
+      this.fillModal(e, text)
+    }, {
+      once: true,
+    })
   }
 
-  fillModal(e) {
-    /*   e.preventDefault();
-    e.stopPropagation(); */
+  fillModal(e, text) {
+  /*      e.preventDefault();
+    e.stopPropagation();  */
 
     let answ = true;
-    /*
+    
     this.modalIcon = document.querySelector(".modal__icon");
-    this.types = JSON.parse(this.getItemFromStorage("types")); */
-    /* 
+    this.types = JSON.parse(this.getItemFromStorage("types")); 
     this.modalImg = document.querySelector(".modal__img-wrap__img");
     this.modalImg.src = `./assets/img/${this.imgNumber}.jpg`;
 
@@ -220,8 +218,8 @@ if (!this.imgNumber) {
     this.modalText = document.querySelectorAll(".modal__info__text");
     this.modalText.forEach((el, i) => {
       el.textContent = picInfo[i];
-    }); */
-    console.log("modal");
+    }); 
+  
     this.modal = document.querySelector(".modal-wrap");
     this.modal.classList.remove("none");
     this.modalBtn = document.querySelector(".modal__btn");
@@ -229,11 +227,9 @@ if (!this.imgNumber) {
     this.modalBtn.addEventListener("click", (e) => this.fillContent(e, answ), {
       once: true,
     });
-    /*  this.modalBtn.removeEventListener("click", (e) => this.fillContent(e, answ), {
-      once: true,
-    }); */
-    /* 
-    if (e.currentTarget.textContent === this.answer) {
+  
+    
+    if (text === this.answer) {
       this.modalIcon.classList.remove("wrong");
       this.modalIcon.classList.add("correct");
 
@@ -251,7 +247,7 @@ if (!this.imgNumber) {
       this.modalIcon.classList.add("wrong");
       answ = false;
      
-    } */
+    } 
   }
 
   randomInteger(min, max) {
@@ -260,7 +256,7 @@ if (!this.imgNumber) {
   }
 }
 
-/* this.portrait = [];
+/*  this.portrait = [];
 this.landscape = [];
 this.stillLife = [];
 this.graphic = [];
@@ -272,10 +268,11 @@ this.kitsch = [];
 this.minimalism = [];
 this.avangard = [];
 this.industrial = [];
- */
-/* if (!this.getItemFromStorage("artInfo")) {
+ 
+ if (!this.getItemFromStorage("artInfo")) {
       this.setLocalStorage("artInfo", JSON.stringify(images));
-    } */
-/*   this.nodeAnswers.forEach((el) => {
+    } 
+   this.nodeAnswers.forEach((el) => {
         el.addEventListener("click", (e) => this.fillModal(e));
-      }); */
+      }); 
+ */
