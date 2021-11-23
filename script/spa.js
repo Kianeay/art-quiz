@@ -1,6 +1,8 @@
 import { Header, Content, Footer } from "./components.js";
 import { GetCardName } from "./create-card.js";
 import { DrawImgCard } from "./create-img.js";
+import { AddImg } from "./results-page.js";
+
 
 import {
   Main,
@@ -11,6 +13,7 @@ import {
   ArtistGame,
   PicturesGame,
 } from "./pages.js";
+
 
 export const components = {
   header: Header,
@@ -44,6 +47,7 @@ export const mySPA = (function () {
     let routesObj = null;
     let imgCards = null;
     let cardName = null;
+    let createScores = null;
 
     this.init = function (container, routes) {
       myModuleContainer = container;
@@ -100,6 +104,8 @@ export const mySPA = (function () {
       } else if (pageName === "scores") {
         if (cardName) cardName.stopTimer();
         if (imgCards) imgCards.stopTimer();
+        createScores = new AddImg();
+        createScores.addImages();
       } else if (pageName === "pictures") {
         if (cardName) cardName.stopTimer();
         if (imgCards) imgCards.stopTimer();

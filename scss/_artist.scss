@@ -103,7 +103,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
-   
+
     &__list {
       display: inline-block;
       height: 15px;
@@ -111,7 +111,7 @@
       margin: 0 5px;
       border: 1px solid #bbb;
       background-color: white;
-   
+
       background-color: rgb(241, 146, 146);
 
       &.red {
@@ -124,17 +124,36 @@
   }
 }
 
-
-
 .picturesgame {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  }
+}
 
-  @media (max-width:500px) {
-    .artgame__img-wrap {
-      height: 150px;
-      }
+@media (max-width: 500px) {
+  .artgame__img-wrap {
+    height: 150px;
   }
+}
+
+.scores__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  &__card {
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    & img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    &.grey {
+      filter: grayscale(90%);
+  }
+  }
+}
