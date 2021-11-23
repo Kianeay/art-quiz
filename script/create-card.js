@@ -226,6 +226,7 @@ export class GetCardName {
 
         if (target.tagName != "BUTTON") return;
         this.fillModal(e, text);
+        this.myTimer.stop();
       },
       {
         once: true,
@@ -243,6 +244,7 @@ export class GetCardName {
   }
 
   fillModal(e, text) {
+  /*   this.myTimer.stop(); */
     this.changeArtistPage = false;
 
     let answ = true;
