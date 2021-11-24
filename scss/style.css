@@ -173,6 +173,8 @@ h2 {
   height: 300px;
   position: relative;
   border-radius: 10px;
+  -webkit-box-shadow: 12px 12px 2px 1px #d34252;
+          box-shadow: 12px 12px 2px 1px #d34252;
 }
 
 .main__cards__card__title {
@@ -182,9 +184,13 @@ h2 {
   left: 0;
   font-size: 1.5rem;
   font-weight: bold;
-  width: 100%;
+  width: 150px;
   background-color: #fff;
   padding-left: 10px;
+  height: 50px;
+  padding-top: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .main__cards__card img {
@@ -242,6 +248,8 @@ h2 {
 .artists__cards__card {
   width: 300px;
   height: 300px;
+  -webkit-box-shadow: 12px 12px 2px 1px #d34252;
+          box-shadow: 12px 12px 2px 1px #d34252;
   position: relative;
   border-radius: 10px;
 }
@@ -270,6 +278,13 @@ h2 {
   background-color: #fff;
   padding-left: 10px;
   text-transform: capitalize;
+  width: 150px;
+  background-color: #fff;
+  padding-left: 10px;
+  height: 50px;
+  padding-top: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .artists__cards__card .fill-div {
@@ -279,6 +294,29 @@ h2 {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+.artists__cards__card__score {
+  background-color: white;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #d34252;
 }
 
 .artgame {
@@ -464,8 +502,8 @@ h2 {
   position: fixed;
   z-index: 5;
   background-color: white;
-  width: 70%;
-  width: 70%;
+  width: 80%;
+  max-width: 500px;
   left: 50%;
   right: 50%;
   -webkit-transform: translateX(-50%);
@@ -484,6 +522,10 @@ h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  -webkit-animation: show 1s ease-in-out;
+          animation: show 1s ease-in-out;
 }
 
 .modal-wrap .modal__icon {
@@ -520,10 +562,45 @@ h2 {
 
 .modal-wrap .modal__info__text {
   text-align: center;
+  font-weight: bold;
+}
+
+.modal-wrap .modal__info__text:first-child {
+  text-transform: uppercase;
 }
 
 .modal-wrap .modal__btn {
-  width: 150px;
+  width: 165px;
   margin: 20px 0;
+  letter-spacing: 2px;
+  background-image: -webkit-gradient(linear, left top, right top, from(#f08628), color-stop(#ec008c), to(#f08628));
+  background-image: linear-gradient(to right, #f08628, #ec008c, #f08628);
+  background-size: 300% 100%;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.modal-wrap .modal__btn:hover, .modal-wrap .modal__btn:active {
+  background-position: -50% 0;
+}
+
+@-webkit-keyframes show {
+  0% {
+    bottom: -500px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+@keyframes show {
+  0% {
+    bottom: -500px;
+  }
+  100% {
+    bottom: 0;
+  }
 }
 /*# sourceMappingURL=style.css.map */

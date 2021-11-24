@@ -52,3 +52,28 @@ export const Footer = {
         `;
   },
 };
+
+
+export const Modal = {
+  render: (customClass = "") => {
+    return `
+    <div class="modal-wrap none">
+    <div class="modal">
+      <div class="modal__icon"></div>
+      <div class="modal__img-wrap">
+        <img class="modal__img-wrap__img" alt="">
+      </div>
+      <div class="modal__info">
+        <div class="modal__info__text">1</div>
+        <div class="modal__info__text">2</div>
+        <div class="modal__info__text">3</div>
+      </div>
+    
+      <button class="button modal__btn">Продолжить</button>
+    </div>
+    <div class="overlay"></div>
+    </div>
+        `;
+  },
+};
+

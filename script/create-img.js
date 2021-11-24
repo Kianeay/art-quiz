@@ -43,6 +43,7 @@ export class DrawImgCard {
       el.addEventListener("click", (e) => this.init(e), { once: true });
     });
 
+    this.start();
     this.checkCards();
     /*    this.cards.forEach((el) => {
       el.removeEventListener("click", (e) => this.init(e), { once: true });
@@ -75,11 +76,32 @@ export class DrawImgCard {
     /*  this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString();  */
     this.cardName = e.currentTarget.className.split(" ");
     this.cardName = this.cardName[this.cardName.length - 1];
-
     this.setLocalStorage("cardName", this.cardName);
+
+  }
+
+  start() {
+   
 
     if (!this.getItemFromStorage("imgTypes")) {
       this.setLocalStorage("imgTypes", JSON.stringify(this.imgTypes));
+    } else {
+      this.imgTypes = JSON.parse(this.getItemFromStorage("imgTypes"));
+    }
+
+   
+
+    for (let key in this.imgTypes) {
+      this.cards.forEach((el, i)=> {
+        let scoreDiv = document.createElement('div');
+        scoreDiv.classList.add('artists__cards__card__score');
+       
+        if (Object.keys(this.imgTypes).indexOf(key) !== i) return;
+        let text = this.imgTypes[key].length;
+        scoreDiv.textContent = `${text}`;
+        el.append(scoreDiv);
+      })
+ 
     }
   }
 
@@ -182,6 +204,7 @@ export class DrawImgCard {
     }
 
     this.checkLastImg();
+    console.log(this.getItemFromStorage("imgTypes")[this.cardName]);
     while (
       JSON.parse(this.getItemFromStorage("imgTypes"))[this.cardName].indexOf(
         this.imgNumber

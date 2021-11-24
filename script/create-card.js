@@ -43,8 +43,8 @@ export class GetCardName {
       el.addEventListener("click", (e) => this.init(e), { once: true });
     });
 
-    
-
+    this.start();
+  
     this.checkCards();
     /*    this.cards.forEach((el) => {
       el.removeEventListener("click", (e) => this.init(e), { once: true });
@@ -72,18 +72,37 @@ export class GetCardName {
   }
 
   init(e) {
-    e.stopPropagation();
+  
 
     /*  this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString();  */
     this.cardName = e.currentTarget.className.split(" ");
     this.cardName = this.cardName[this.cardName.length - 1];
-
     this.setLocalStorage("cardName", this.cardName);
+  }
+
+  start() {
+  
 
     if (!this.getItemFromStorage("types")) {
       this.setLocalStorage("types", JSON.stringify(this.types));
+    } else {
+      this.types = JSON.parse(this.getItemFromStorage("types"));
     }
 
+   
+
+    for (let key in this.types) {
+      this.cards.forEach((el, i)=> {
+        let scoreDiv = document.createElement('div');
+        scoreDiv.classList.add('artists__cards__card__score');
+       
+        if (Object.keys(this.types).indexOf(key) !== i) return;
+        let text = this.types[key].length;
+        scoreDiv.textContent = `${text}`;
+        el.append(scoreDiv);
+      })
+ 
+    }
   }
 
   setLocalStorage(key, value) {
