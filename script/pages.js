@@ -313,13 +313,105 @@ export const Scores = {
   title: "quiz scores",
   render: (className = "container", ...rest) => {
     return `
+
     <div class="${className}">
-      <div class="wrapper">
-        <div class="${className}__cards">
-          
-        </div>
+  
+    <div class="wrapper">
+    <div class="artists__cards flex flex-jc-c">
+
+    <div class="artists__cards__card   portrait">
+      <img loading="lazy"  src="./assets/full/130full.jpg" alt="" />
+      <p class="artists__cards__card__title">Portrait</p>
+      <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   landscape">
+      <img loading="lazy"  src="./assets/full/140full.jpg" alt="" />
+      <p class="artists__cards__card__title">landscape</p>
+      <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   stillLife">
+    <img loading="lazy"  src="./assets/full/150full.jpg" alt="" />
+    <p class="artists__cards__card__title">still life</p>
+    <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   graphic">
+    <img loading="lazy"  src="./assets/full/160full.jpg" alt="" />
+    <p class="artists__cards__card__title">graphic</p>
+    <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   antique">
+    <img loading="lazy"  src="./assets/full/170full.jpg" alt="" />
+    <p class="artists__cards__card__title">antique</p>
+    <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   avantGarde">
+    <img loading="lazy"  src="./assets/full/180full.jpg" alt="" />
+    <p class="artists__cards__card__title">avant-garde</p>
+    <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   renaissance">
+    <img loading="lazy"  src="./assets/full/190full.jpg" alt="" />
+    <p class="artists__cards__card__title">renaissance</p>
+    <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   surrealism">
+    <img loading="lazy"  src="./assets/full/200full.jpg" alt="" />
+    <p class="artists__cards__card__title">surrealism</p>
+    <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   kitsch">
+    <img loading="lazy" src="./assets/full/210full.jpg" alt="" />
+    <p class="artists__cards__card__title">kitsch</p>
+    <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   minimalism">
+    <img loading="lazy"  src="./assets/full/220full.jpg" alt="" />
+    <p class="artists__cards__card__title">minimalism</p>
+    <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   avangard">
+    <img loading="lazy"  src="./assets/full/230full.jpg" alt="" />
+    <p class="artists__cards__card__title">avangard</p>
+    <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+    <div class="artists__cards__card   industrial">
+    <img loading="lazy"  src="./assets/full/40full.jpg" alt="" />
+    <p class="artists__cards__card__title">industrial</p>
+    <a href="#scoreinfo" class="fill-div hash"></a>
+    </div>
+
+  </div>
+    </div>
+
+
+          `;
+  },
+};
+
+export const Scoreinfo = {
+  id: "scoreinfo",
+  title: "category info",
+  render: (className = "container", ...rest) => {
+    return `
+    <div class="${className}">
+    <div class="wrapper">
+    <div class="scoreinfo__cards__category"></div>
+      <div class="${className}__cards">
+        
       </div>
     </div>
+    </div>    
           `;
   },
 };

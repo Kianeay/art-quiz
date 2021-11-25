@@ -161,15 +161,15 @@
   }
 }
 
-.scores__cards {
+.scoreinfo__cards {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   &__card {
     cursor: pointer;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     & img {
       object-fit: cover;
       width: 100%;
@@ -179,5 +179,20 @@
     &.grey {
       filter: grayscale(90%);
     }
+  }
+
+  &__category {
+    background-image: linear-gradient(to right, #f08628, #ec008c, #f08628);
+    background-size: 300% 100%;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 50px;
+    display: flex;
+    color: white;
+    font-size: 45px;
+    letter-spacing: 10px;
+    padding-left: 20px;
+    align-items: center;
+    text-transform: uppercase;
   }
 }

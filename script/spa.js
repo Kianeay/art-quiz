@@ -3,7 +3,6 @@ import { GetCardName } from "./create-card.js";
 import { DrawImgCard } from "./create-img.js";
 import { AddImg } from "./results-page.js";
 
-
 import {
   Main,
   Artists,
@@ -12,14 +11,14 @@ import {
   Scores,
   ArtistGame,
   PicturesGame,
+  Scoreinfo,
 } from "./pages.js";
-
 
 export const components = {
   header: Header,
   content: Content,
   footer: Footer,
-  modal: Modal
+  modal: Modal,
 };
 
 export const routes = {
@@ -32,6 +31,7 @@ export const routes = {
   artgame: ArtistGame,
   pictures: Pictures,
   picturesgame: PicturesGame,
+  scoreinfo: Scoreinfo,
   /*    
     login: Login,
     error: ErrorPage, */
@@ -80,7 +80,7 @@ export const mySPA = (function () {
         let timeRange = document.querySelector("#rangeVal");
         if (localStorage.getItem("timer")) {
           timeCheck.checked = true;
-          timeRange.value = localStorage.getItem("timer") 
+          timeRange.value = localStorage.getItem("timer");
         } else {
           timeCheck.checked = false;
         }
@@ -105,15 +105,23 @@ export const mySPA = (function () {
       } else if (pageName === "scores") {
         if (cardName) cardName.stopTimer();
         if (imgCards) imgCards.stopTimer();
-        createScores = new AddImg();
-       /*  createScores.addImages(); */
+        document.querySelectorAll(".artists__cards__card").forEach((card) =>
+          card.addEventListener("click", function (e) {
+          let text =  e.currentTarget.classList;
+          text = text[1]
+            localStorage.setItem("scoresCategory", text);
+          })
+        );
+        /*  createScores.addImages(); */
       } else if (pageName === "pictures") {
         if (cardName) cardName.stopTimer();
         if (imgCards) imgCards.stopTimer();
-        imgCards = new DrawImgCard();
+        imgCards = new DrawImgCard(); //
       } else if (pageName === "picturesgame") {
         if (!imgCards) imgCards = new DrawImgCard();
         imgCards.fillContent();
+      } else if (pageName === "scoreinfo") {
+        createScores = new AddImg();
       }
     };
 

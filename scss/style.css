@@ -446,7 +446,7 @@ h2 {
   }
 }
 
-.scores__cards {
+.scoreinfo__cards {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -458,22 +458,42 @@ h2 {
           justify-content: center;
 }
 
-.scores__cards__card {
+.scoreinfo__cards__card {
   cursor: pointer;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
 }
 
-.scores__cards__card img {
+.scoreinfo__cards__card img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
-.scores__cards__card.grey {
+.scoreinfo__cards__card.grey {
   -webkit-filter: grayscale(90%);
           filter: grayscale(90%);
+}
+
+.scoreinfo__cards__category {
+  background-image: -webkit-gradient(linear, left top, right top, from(#f08628), color-stop(#ec008c), to(#f08628));
+  background-image: linear-gradient(to right, #f08628, #ec008c, #f08628);
+  background-size: 300% 100%;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  font-size: 45px;
+  letter-spacing: 10px;
+  padding-left: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-transform: uppercase;
 }
 
 .modal-wrap {
