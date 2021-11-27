@@ -125,6 +125,7 @@ export const ArtistGame = {
   render: (className = "container", ...rest) => {
     return `
     <div class="wrapper">
+    <a href="#artists" class="breadcrumb">/категории</a>
       <div class="${className}">
         <h2 class="artgame__title">Кто автор данной картины?</h2>
         <div class="artgame__img-wrap">
@@ -250,6 +251,7 @@ export const PicturesGame = {
   render: (className = "container", ...rest) => {
     return `
     <div class="wrapper">
+    <a href="#pictures" class="breadcrumb">/категории</a>
     <div class="${className}">
       <h2 class="artgame__title">Какую картину написал?</h2>
 

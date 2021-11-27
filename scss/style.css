@@ -125,6 +125,13 @@ h2 {
   border-radius: 15px;
 }
 
+.breadcrumb {
+  position: absolute;
+  top: 150px;
+  color: #e483ad;
+  font-weight: bold;
+}
+
 .header__wrap {
   padding-top: 20px;
   border-bottom: dotted #D34252;
@@ -175,6 +182,14 @@ h2 {
   border-radius: 10px;
   -webkit-box-shadow: 12px 12px 2px 1px #d34252;
           box-shadow: 12px 12px 2px 1px #d34252;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.main__cards__card:hover {
+  scale: 1.1;
+  -webkit-box-shadow: 12px 12px 2px 1px #d38342;
+          box-shadow: 12px 12px 2px 1px #d38342;
 }
 
 .main__cards__card__title {
@@ -494,6 +509,19 @@ h2 {
       -ms-flex-align: center;
           align-items: center;
   text-transform: uppercase;
+}
+
+.scores .artists__cards__card {
+  width: 200px;
+  height: 200px;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.scores .artists__cards__card:hover {
+  scale: 1.1;
+  -webkit-box-shadow: 12px 12px 2px 1px #d38342;
+          box-shadow: 12px 12px 2px 1px #d38342;
 }
 
 .modal-wrap {
