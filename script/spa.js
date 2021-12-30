@@ -1,8 +1,8 @@
 import {
   Header, Content, Footer, Modal,
 } from './components';
-import GetCardName from './create-card';
-import DrawImgCard from './create-img';
+import AuthorCardsSettings from './create-card';
+import ImageCardsSettings from './create-img';
 import AddImg from './results-page';
 
 import {
@@ -61,11 +61,11 @@ export const mySPA = (function () {
       this.updateLink(routesObj[routeName].id);
 
       if (pageName === 'artists') {
-        cardName = new GetCardName();
+        cardName = new AuthorCardsSettings();
         if (cardName) cardName.stopTimer();
         if (imgCards) imgCards.stopTimer();
       } else if (pageName === 'artgame') {
-        if (!cardName) cardName = new GetCardName();
+        if (!cardName) cardName = new AuthorCardsSettings();
         cardName.fillContent();
       } else if (pageName === 'settings') {
         if (cardName) cardName.stopTimer();
@@ -108,9 +108,9 @@ export const mySPA = (function () {
       } else if (pageName === 'pictures') {
         if (cardName) cardName.stopTimer();
         if (imgCards) imgCards.stopTimer();
-        imgCards = new DrawImgCard(); //
+        imgCards = new ImageCardsSettings(); //
       } else if (pageName === 'picturesgame') {
-        if (!imgCards) imgCards = new DrawImgCard();
+        if (!imgCards) imgCards = new ImageCardsSettings();
         imgCards.fillContent();
       } else if (pageName === 'scoreinfo') {
         // eslint-disable-next-line no-unused-vars

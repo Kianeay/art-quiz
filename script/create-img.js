@@ -1,7 +1,8 @@
 import images from './images';
 import Timer from './timer';
+import { randomIntegerInRange } from './utils';
 
-export default class DrawImgCard {
+export default class ImageCardsSettings {
   constructor() {
     this.cards = document.querySelectorAll('.artists__cards__card');
     this.nodeAnswers = null;
@@ -213,7 +214,7 @@ export default class DrawImgCard {
     this.answers.push(this.answer);
 
     while (this.answers.length < 4) {
-      const authorNum = this.randomInteger(0, 200);
+      const authorNum = randomIntegerInRange(0, 200);
       const author = images[authorNum].imageNum;
       if (this.answers.indexOf(author) === -1) {
         this.answers.push(author);
@@ -295,10 +296,5 @@ export default class DrawImgCard {
       this.modalIcon.classList.add('wrong');
       answ = false;
     }
-  }
-
-  randomInteger(min, max) {
-    const rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
   }
 }
