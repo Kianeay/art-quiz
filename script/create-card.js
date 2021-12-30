@@ -49,8 +49,8 @@ export default class AuthorCardsSettings {
   }
 
   checkCards() {
-    if (JSON.parse(this.getItemFromStorage('types'))) {
-      this.types = JSON.parse(this.getItemFromStorage('types'));
+    if (JSON.parse(localStorage.getItem('types'))) {
+      this.types = JSON.parse(localStorage.getItem('types'));
 
       this.cards.forEach((el) => {
         let text = el.className.split(' ');
@@ -71,14 +71,14 @@ export default class AuthorCardsSettings {
   init(e) {
     this.cardName = e.currentTarget.className.split(' ');
     this.cardName = this.cardName[this.cardName.length - 1];
-    this.setLocalStorage('cardName', this.cardName);
+    localStorage.setItem('cardName', this.cardName);
   }
 
   start() {
-    if (!this.getItemFromStorage('types')) {
-      this.setLocalStorage('types', JSON.stringify(this.types));
+    if (!localStorage.getItem('types')) {
+      localStorage.setItem('types', JSON.stringify(this.types));
     } else {
-      this.types = JSON.parse(this.getItemFromStorage('types'));
+      this.types = JSON.parse(localStorage.getItem('types'));
     }
 
     for (const key in this.types) {
@@ -94,16 +94,8 @@ export default class AuthorCardsSettings {
     }
   }
 
-  setLocalStorage(key, value) {
-    localStorage.setItem(key, value);
-  }
-
-  getItemFromStorage(key) {
-    return localStorage.getItem(key);
-  }
-
   fillContent(e, answ) {
-    if (this.getItemFromStorage('timer')) {
+    if (localStorage.getItem('timer')) {
       this.isTimerOn = true;
     } else {
       this.isTimerOn = false;
@@ -120,7 +112,7 @@ export default class AuthorCardsSettings {
     this.answers = [];
 
     if (!this.cardName) {
-      this.cardName = this.getItemFromStorage('cardName');
+      this.cardName = localStorage.getItem('cardName');
     }
 
     this.lists.forEach((el, i) => {
@@ -197,7 +189,7 @@ export default class AuthorCardsSettings {
 
     this.checkLastImg();
     while (
-      JSON.parse(this.getItemFromStorage('types'))[this.cardName].indexOf(
+      JSON.parse(localStorage.getItem('types'))[this.cardName].indexOf(
         this.imgNumber,
       ) !== -1
     ) {
@@ -258,7 +250,7 @@ export default class AuthorCardsSettings {
     let answ = true;
 
     this.modalIcon = document.querySelector('.modal__icon');
-    this.types = JSON.parse(this.getItemFromStorage('types'));
+    this.types = JSON.parse(localStorage.getItem('types'));
     this.modalImg = document.querySelector('.modal__img-wrap__img');
     this.modalImg.src = `./assets/img/${this.imgNumber}.jpg`;
 
@@ -285,13 +277,13 @@ export default class AuthorCardsSettings {
       this.modalIcon.classList.add('correct');
 
       if (
-        this.types[this.getItemFromStorage('cardName')].indexOf(
+        this.types[localStorage.getItem('cardName')].indexOf(
           this.imgNumber,
         ) === -1
       ) {
         answ = true;
-        this.types[this.getItemFromStorage('cardName')].push(this.imgNumber);
-        this.setLocalStorage('types', JSON.stringify(this.types));
+        this.types[localStorage.getItem('cardName')].push(this.imgNumber);
+        localStorage.setItem('types', JSON.stringify(this.types));
       }
     } else {
       this.modalIcon.classList.remove('correct');
