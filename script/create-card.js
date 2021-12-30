@@ -46,9 +46,6 @@ export class GetCardName {
     this.start();
   
     this.checkCards();
-    /*    this.cards.forEach((el) => {
-      el.removeEventListener("click", (e) => this.init(e), { once: true });
-    }); */
   }
 
   checkCards() {
@@ -74,7 +71,7 @@ export class GetCardName {
   init(e) {
   
 
-    /*  this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString();  */
+
     this.cardName = e.currentTarget.className.split(" ");
     this.cardName = this.cardName[this.cardName.length - 1];
     this.setLocalStorage("cardName", this.cardName);
@@ -263,7 +260,7 @@ export class GetCardName {
   }
 
   fillModal(e, text) {
-  /*   this.myTimer.stop(); */
+
     this.changeArtistPage = false;
 
     let answ = true;

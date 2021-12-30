@@ -13,7 +13,6 @@ export class AddImg {
   }
 
   addImages() {
-    //scoresCategory
 
     this.categoryTitle = document.querySelector('.scoreinfo__cards__category');
     let category = localStorage.getItem("scoresCategory");
@@ -87,49 +86,7 @@ export class AddImg {
       }
       this.imageNumber++;
     }
-    /*
-
- 
-    for (let i = 0; i < 12; i++) {
-      let div = document.createElement('div');
-      div.classList.add('scores__cards__category');
-      this.cardBlock.appendChild(div); 
-
-      for (let j = 0; j < 10; j++) {
-        let img = new Image();
-
-        let url = `./assets/img/${imageNumber}.jpg`;
-        let imgWrap = document.createElement("div");
-        imgWrap.classList.add("scores__cards__card");
-        div.appendChild(imgWrap);
-        img.onload = function () {
-          imgWrap.appendChild(img);
-        };
-        img.src = url;
-        imageNumber++;
-      }
-
-    } */
-
-    /*     for (let key in images) {
-      let img = new Image();
-
-      let url = `./assets/img/${images[key]["imageNum"]}.jpg`;
-      let imgWrap = document.createElement("div");
-      imgWrap.classList.add("scores__cards__card");
-
-      if (this.array.indexOf(+images[key]["imageNum"]) === -1) {
-        imgWrap.classList.add("grey");
-      }
-
-      this.cardBlock.appendChild(imgWrap);
-
-      img.onload = function () {
-        imgWrap.appendChild(img);
-      };
-
-      img.src = url;
-    } */
+  
     this.cardBlock.addEventListener("click", (e) => {
       let target = e.target;
       let text = target.src.split("/");

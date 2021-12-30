@@ -45,9 +45,7 @@ export class DrawImgCard {
 
     this.start();
     this.checkCards();
-    /*    this.cards.forEach((el) => {
-      el.removeEventListener("click", (e) => this.init(e), { once: true });
-    }); */
+
   }
 
   checkCards() {
@@ -73,7 +71,7 @@ export class DrawImgCard {
   init(e) {
     e.stopPropagation();
 
-    /*  this.cardName = e.currentTarget.textContent.trim().toLowerCase().toString();  */
+  
     this.cardName = e.currentTarget.className.split(" ");
     this.cardName = this.cardName[this.cardName.length - 1];
     this.setLocalStorage("cardName", this.cardName);
@@ -213,8 +211,7 @@ export class DrawImgCard {
       this.checkLastImg();
       this.imgNumber++;
     }
-    /*   this.img = document.querySelector(".artgame__img-wrap__img");
-    this.img.src = `./assets/img/${this.imgNumber}.jpg`; */
+
 
     this.answer = images[this.imgNumber]["imageNum"];
     this.answerAuthor = images[this.imgNumber]["author"];
@@ -235,10 +232,10 @@ export class DrawImgCard {
 
     this.answers = this.answers.sort(() => Math.random() - 0.5);
 
-    /*  this.nodeAnswers = document.querySelectorAll(".artgame__answers__answer"); */
+
     this.imgLists = document.querySelectorAll(".artgame__img-wrap__img");
     this.imgLists.forEach((el, i) => {
-      /*   el.textContent = this.answers[i]; */
+
 
       el.src = `./assets/img/${this.answers[i]}.jpg`;
     });
@@ -261,12 +258,7 @@ export class DrawImgCard {
   }
 
   checkLastImg() {
-  /*   if (
-      this.picBreak.indexOf(this.imgNumber) !== -1 &&
-      this.changeArtistPage === false
-    ) {
-      window.location.hash = "pictures";
-    } */
+
   }
 
   fillModal(e, text) {

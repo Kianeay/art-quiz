@@ -32,15 +32,13 @@ export const routes = {
   pictures: Pictures,
   picturesgame: PicturesGame,
   scoreinfo: Scoreinfo,
-  /*    
-    login: Login,
-    error: ErrorPage, */
+ 
 };
 
-//       spa init module
+
 
 export const mySPA = (function () {
-  //      begin view
+
 
   function ModuleView() {
     let myModuleContainer = null;
@@ -112,7 +110,7 @@ export const mySPA = (function () {
             localStorage.setItem("scoresCategory", text);
           })
         );
-        /*  createScores.addImages(); */
+    
       } else if (pageName === "pictures") {
         if (cardName) cardName.stopTimer();
         if (imgCards) imgCards.stopTimer();
@@ -136,8 +134,7 @@ export const mySPA = (function () {
     };
   }
 
-  //        end view
-  //        begin model
+
 
   function ModuleModel() {
     let myView = null;
@@ -151,8 +148,7 @@ export const mySPA = (function () {
     };
   }
 
-  //      end model
-  //      begin controller
+
 
   function ModuleController() {
     let myModuleContainer = null;
@@ -168,12 +164,12 @@ export const mySPA = (function () {
     };
 
     this.update = function () {
-      /* const pageName = window.location.hash.slice(1).toLowerCase(); */
+
       pageName = window.location.hash.slice(1).toLowerCase();
       myModel.update(pageName);
     };
   }
-  //    end controller
+
 
   return {
     init: function ({ container, routes, components }) {
@@ -188,7 +184,7 @@ export const mySPA = (function () {
       controller.init(document.getElementById(container), model);
     },
 
-    // draw main components
+
     renderComponents: function (container, components) {
       const root = document.getElementById(container);
       const componentList = Object.keys(components);

@@ -38,7 +38,7 @@ const Timer = ({ timeout = 20, size = 20, onFinish } = {}) => {
       (timerId = setTimeout(function tick(time = timeout) {
         if (time < 0) return onFinish();
         draw(timeout - time);
-        timerId = setTimeout(() => tick(--time), 1000); // (*)
+        timerId = setTimeout(() => tick(--time), 1000); 
       }, 1000));
   
     const stop = () => clearTimeout(timerId);
