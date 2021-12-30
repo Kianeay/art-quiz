@@ -1,0 +1,104 @@
+@mixin hover-active() {
+  &:hover,
+  &:active {
+    @content;
+  }
+}
+
+.modal-wrap {
+  display: flex;
+  justify-content: center;
+
+  &.none {
+    display: none;
+  }
+
+  & .overlay {
+    background-color: #000000b5;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+  & .modal {
+    position: fixed;
+    z-index: 5;
+    background-color: white;
+    width: 80%;
+    max-width: 500px;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    animation: show 1s ease-in-out;
+    &__icon {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: -25px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      &.correct {
+        background-image: url("../assets/correct.png");
+      }
+      &.wrong {
+        background-image: url("../assets/cross.png");
+      }
+    }
+
+    &__img-wrap {
+      width: 60%;
+      height: 300px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      &__img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__info {
+      &__text {
+        text-align: center;
+        font-weight: bold;
+
+        &:first-child {
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    &__btn {
+      width: 165px;
+      margin: 20px 0;
+      letter-spacing: 2px;
+      background-image: linear-gradient(to right, #f08628, #ec008c, #f08628);
+      background-size: 300% 100%;
+      transition: all 0.5s ease-in-out;
+      text-transform: uppercase;
+      opacity: 1;
+
+      @include hover-active() {
+        background-position: -50% 0;
+      }
+    }
+  }
+}
+
+@keyframes show {
+  0% {
+    bottom: -500px;
+  }
+  100% {
+    bottom: 0;
+  }
+}

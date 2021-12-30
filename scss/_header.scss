@@ -1,0 +1,31 @@
+.header {
+  &__wrap {
+    padding-top: 20px;
+    border-bottom: dotted $main;
+    padding-bottom: 10px;
+  }
+
+  &__menu {
+    align-self: self-end;
+    padding-bottom: 10px;
+    &__link {
+      padding: 5px;
+    }
+  }
+  &__logo-wrap {
+    &__logo {
+      width: 80px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .header__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    &__link {
+      height: 30px;
+    }
+  }
+}

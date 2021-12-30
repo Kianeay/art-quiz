@@ -1,0 +1,210 @@
+.artists {
+  &__cards {
+    flex-wrap: wrap;
+    gap: 50px;
+    &__card {
+      width: 300px;
+      height: 300px;
+      box-shadow: 12px 12px 2px 1px #d34252;
+
+      &.grey {
+        filter: grayscale(90%);
+      }
+
+      position: relative;
+      border-radius: 10px;
+      & img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+      }
+      &__title {
+        position: absolute;
+        bottom: 0;
+        color: $main;
+        left: 0;
+        font-size: $font-big;
+        font-weight: bold;
+        width: 100%;
+        background-color: #fff;
+        padding-left: 10px;
+        text-transform: capitalize;
+        width: 150px;
+        background-color: #fff;
+        padding-left: 10px;
+        height: 50px;
+        padding-top: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      & .fill-div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      &__score {
+        background-color: white;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        font-weight: bold;
+        color: #d34252;
+      }
+    }
+  }
+}
+
+.artgame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    margin: 0;
+    padding-bottom: 10px;
+  }
+
+  &__img-wrap {
+    max-width: 400px;
+    height: 300px;
+    width: 100%;
+
+    &__img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__answers {
+    flex: 1 1 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: ". ." ". .";
+    gap: 30px;
+    margin-top: 20px;
+
+    &__answer {
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      max-width: 200px;
+      height: 50px;
+      cursor: pointer;
+      width: 100%;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background-color: $main;
+
+        &:active {
+          background-color: $orange;
+        }
+      }
+    }
+  }
+
+  &__controls {
+    list-style-type: square;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+
+    &__list {
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      margin: 0 5px;
+      border: 1px solid #bbb;
+      background-color: white;
+
+      background-color: rgb(241, 146, 146);
+
+      &.red {
+        background-color: rgb(241, 146, 146);
+      }
+      &.green {
+        background-color: rgb(165, 238, 165);
+      }
+    }
+  }
+}
+
+.picturesgame {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 500px) {
+  .artgame__img-wrap {
+    height: 150px;
+  }
+}
+
+.scoreinfo__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  &__card {
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    & img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    &.grey {
+      filter: grayscale(90%);
+    }
+  }
+
+  &__category {
+    background-image: linear-gradient(to right, #f08628, #ec008c, #f08628);
+    background-size: 300% 100%;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 50px;
+    display: flex;
+    color: white;
+    font-size: 45px;
+    letter-spacing: 10px;
+    padding-left: 20px;
+    align-items: center;
+    text-transform: uppercase;
+  }
+}
+
+.scores {
+  & .artists__cards__card {
+    width: 200px;
+    height: 200px;
+    transition: all 1s;
+
+    &:hover {
+      scale: 1.1;
+      box-shadow: 12px 12px 2px 1px rgb(211, 131, 66);
+    }
+  }
+}
