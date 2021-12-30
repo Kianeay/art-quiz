@@ -1,59 +1,53 @@
 .main {
+  &__cards {
+    flex-wrap: wrap;
+    gap: 50px;
 
-    
-  
-    &__cards{
+    &__card {
+      width: 300px;
+      height: 300px;
 
-        flex-wrap: wrap;
-        gap: 50px;
+      position: relative;
+      border-radius: 10px;
+      box-shadow: 12px 12px 2px 1px rgb(211, 66, 82);
+      transition: all 1s;
 
-        &__card {
+      &:hover {
+        scale: 1.1;
+        box-shadow: 12px 12px 2px 1px rgb(211, 131, 66);
+      }
 
-            width: 300px;
-            height: 300px;
-     
-            position: relative;
-            border-radius: 10px;
-            box-shadow: 12px 12px 2px 1px rgb(211, 66, 82);
-            transition: all 1s;
+      &__title {
+        position: absolute;
+        bottom: 0;
+        color: $main;
+        left: 0;
+        font-size: $font-big;
+        font-weight: bold;
+        width: 150px;
+        background-color: #fff;
+        padding-left: 10px;
+        height: 50px;
+        padding-top: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
 
-            &:hover {
-                scale: 1.1;
-                box-shadow: 12px 12px 2px 1px rgb(211, 131, 66);
-            }
+      & img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+      }
 
-            &__title {
-                position: absolute;
-                bottom: 0;
-                color: $main;
-                left: 0;
-                font-size: $font-big;
-                font-weight: bold;
-                width: 150px;
-                background-color: #fff;
-                padding-left: 10px;
-                height: 50px;
-                padding-top: 10px;
-                border-top-right-radius: 10px;
-                border-bottom-right-radius: 10px;
-            
-            }
-
-            & img {
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
-                border-radius: 10px;
-            }
-
-            & .fill-div {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-            }
-        }
+      & .fill-div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
     }
+  }
 }

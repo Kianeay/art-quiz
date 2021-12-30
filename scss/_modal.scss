@@ -1,8 +1,8 @@
 @mixin hover-active() {
-	&:hover,
-	&:active {
-		@content;
-	}
+  &:hover,
+  &:active {
+    @content;
+  }
 }
 
 .modal-wrap {
@@ -82,21 +82,20 @@
       margin: 20px 0;
       letter-spacing: 2px;
       background-image: linear-gradient(to right, #f08628, #ec008c, #f08628);
-			background-size: 300% 100%;
-			transition: all 0.5s ease-in-out;
-			text-transform: uppercase;
-			opacity: 1;
+      background-size: 300% 100%;
+      transition: all 0.5s ease-in-out;
+      text-transform: uppercase;
+      opacity: 1;
 
       @include hover-active() {
-				background-position: -50% 0;
-			}
+        background-position: -50% 0;
+      }
     }
   }
 }
 
-
 @keyframes show {
-  0%   {
+  0% {
     bottom: -500px;
   }
   100% {
