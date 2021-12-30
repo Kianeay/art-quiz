@@ -1,10 +1,11 @@
-import images from "./images";
+/* eslint-disable no-unused-vars */
+import images from './images';
 
-export class AddImg {
+export default class AddImg {
   constructor() {
-    this.cardBlock = document.querySelector(".scoreinfo__cards");
-    this.imagesStorage = this.getItemFromStorage("imgTypes");
-    this.artistStorage = this.getItemFromStorage("types");
+    this.cardBlock = document.querySelector('.scoreinfo__cards');
+    this.imagesStorage = this.getItemFromStorage('imgTypes');
+    this.artistStorage = this.getItemFromStorage('types');
     this.array = [];
     this.imageNumber = 0;
 
@@ -13,87 +14,86 @@ export class AddImg {
   }
 
   addImages() {
-
     this.categoryTitle = document.querySelector('.scoreinfo__cards__category');
-    let category = localStorage.getItem("scoresCategory");
+    const category = localStorage.getItem('scoresCategory');
     this.categoryTitle.textContent = category;
 
     switch (category) {
-      case "portrait":
+      case 'portrait':
         this.imageNumber = 0;
         break;
 
-      case "landscape":
+      case 'landscape':
         this.imageNumber = 10;
         break;
 
-      case "stillLife":
+      case 'stillLife':
         this.imageNumber = 20;
         break;
 
-      case "graphic":
+      case 'graphic':
         this.imageNumber = 30;
         break;
 
-      case "antique":
+      case 'antique':
         this.imageNumber = 40;
         break;
 
-      case "avantGarde":
+      case 'avantGarde':
         this.imageNumber = 50;
         break;
 
-      case "renaissance":
+      case 'renaissance':
         this.imageNumber = 60;
         break;
 
-      case "surrealism":
+      case 'surrealism':
         this.imageNumber = 70;
         break;
 
-      case "kitsch":
+      case 'kitsch':
         this.imageNumber = 80;
         break;
 
-      case "minimalism":
+      case 'minimalism':
         this.imageNumber = 90;
         break;
 
-      case "avangard":
+      case 'avangard':
         this.imageNumber = 100;
         break;
 
-      case "industrial":
+      case 'industrial':
         this.imageNumber = 110;
         break;
+      default:
     }
 
-    console.log(this.imageNumber);
     for (let j = 0; j < 10; j++) {
-      let img = new Image();
+      const img = new Image();
 
-      let url = `./assets/img/${this.imageNumber}.jpg`;
-      let imgWrap = document.createElement("div");
-      imgWrap.classList.add("scoreinfo__cards__card");
+      const url = `./assets/img/${this.imageNumber}.jpg`;
+      const imgWrap = document.createElement('div');
+      imgWrap.classList.add('scoreinfo__cards__card');
       this.cardBlock.appendChild(imgWrap);
-      img.onload = function () {
+      img.onload = () => {
         imgWrap.appendChild(img);
       };
       img.src = url;
 
       if (this.array.indexOf(this.imageNumber) === -1) {
-        imgWrap.classList.add("grey");
+        imgWrap.classList.add('grey');
       }
       this.imageNumber++;
     }
-  
-    this.cardBlock.addEventListener("click", (e) => {
-      let target = e.target;
-      let text = target.src.split("/");
+
+    this.cardBlock.addEventListener('click', (e) => {
+      const { target } = e;
+      let text = target.src.split('/');
       text = text[text.length - 1];
       text = text.substring(0, text.length - 4);
 
-      if (target.tagName != "IMG") return;
+      if (target.tagName !== 'IMG') return;
       this.showModal(text);
     });
   }
@@ -116,31 +116,32 @@ export class AddImg {
   }
 
   showModal(text) {
-    this.modalIcon = document.querySelector(".modal__icon");
-    this.modalImg = document.querySelector(".modal__img-wrap__img");
+    this.modalIcon = document.querySelector('.modal__icon');
+    this.modalImg = document.querySelector('.modal__img-wrap__img');
     this.modalImg.src = `./assets/img/${+text}.jpg`;
 
-    let picInfo = [];
-    picInfo.push(images[+text]["name"]);
-    picInfo.push(images[+text]["author"]);
-    picInfo.push(images[+text]["year"]);
+    const picInfo = [];
+    picInfo.push(images[+text].name);
+    picInfo.push(images[+text].author);
+    picInfo.push(images[+text].year);
 
-    this.modalText = document.querySelectorAll(".modal__info__text");
+    this.modalText = document.querySelectorAll('.modal__info__text');
     this.modalText.forEach((el, i) => {
-      el.textContent = picInfo[i];
+      const element = el;
+      element.textContent = picInfo[i];
     });
-    this.modal = document.querySelector(".modal-wrap");
-    this.modalIcon.classList.remove("correct", "wrong");
+    this.modal = document.querySelector('.modal-wrap');
+    this.modalIcon.classList.remove('correct', 'wrong');
 
-    this.modal.classList.remove("none");
-    this.modalBtn = document.querySelector(".modal__btn");
+    this.modal.classList.remove('none');
+    this.modalBtn = document.querySelector('.modal__btn');
 
     this.modalBtn.addEventListener(
-      "click",
-      () => this.modal.classList.add("none"),
+      'click',
+      () => this.modal.classList.add('none'),
       {
         once: true,
-      }
+      },
     );
   }
 }

@@ -1,8 +1,7 @@
 export const Header = {
-  id: "header",
-  title: "Тренировки",
-  render: (className = "container", ...rest) => {
-    return `
+  id: 'header',
+  title: 'Тренировки',
+  render: () => `
       <header class="header">
       <div class="wrapper">
         <div class="header__wrap flex flex-jc-sb flex-ai-c">
@@ -17,19 +16,15 @@ export const Header = {
         </div>
       </div>
     </header>
-          `;
-  },
+          `,
 };
 
 export const Content = {
-  render: (customClass = "") => {
-    return `<div class="content ${customClass}" id="content"></div>`;
-  },
+  render: (customClass = '') => `<div class="content ${customClass}" id="content"></div>`,
 };
 
 export const Footer = {
-  render: (customClass = "") => {
-    return `
+  render: () => `
     <footer class="footer">
     <div class="wrapper">
       <ul>
@@ -49,14 +44,11 @@ export const Footer = {
       </ul>
     </div>
   </footer>
-        `;
-  },
+        `,
 };
 
-
 export const Modal = {
-  render: (customClass = "") => {
-    return `
+  render: () => `
     <div class="modal-wrap none">
     <div class="modal">
       <div class="modal__icon"></div>
@@ -68,12 +60,9 @@ export const Modal = {
         <div class="modal__info__text">2</div>
         <div class="modal__info__text">3</div>
       </div>
-    
       <button class="button modal__btn">Продолжить</button>
     </div>
     <div class="overlay"></div>
     </div>
-        `;
-  },
+        `,
 };
-

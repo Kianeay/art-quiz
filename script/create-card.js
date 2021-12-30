@@ -1,18 +1,17 @@
+import images from './images';
+import Timer from './timer';
 
-import images from "./images.js";
-import Timer from "./timer.js";
-
-export class GetCardName {
+export default class GetCardName {
   constructor() {
-    this.cards = document.querySelectorAll(".artists__cards__card");
+    this.cards = document.querySelectorAll('.artists__cards__card');
     this.nodeAnswers = null;
-    this.modal = document.querySelector(".modal-wrap");
-    this.lists = document.querySelectorAll(".artgame__controls__list");
+    this.modal = document.querySelector('.modal-wrap');
+    this.lists = document.querySelectorAll('.artgame__controls__list');
     this.changeArtistPage = true;
 
     this.imgNumber = 0;
-    this.cardName = "";
-    this.answer = "";
+    this.cardName = '';
+    this.answer = '';
     this.answers = [];
 
     this.isTimerOn = false;
@@ -40,65 +39,57 @@ export class GetCardName {
     this.picBreak = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
 
     this.cards.forEach((el) => {
-      el.addEventListener("click", (e) => this.init(e), { once: true });
+      el.addEventListener('click', (e) => this.init(e), { once: true });
     });
 
     this.start();
-  
+
     this.checkCards();
   }
 
   checkCards() {
-    if (JSON.parse(this.getItemFromStorage("types"))) {
-      this.types = JSON.parse(this.getItemFromStorage("types"));
+    if (JSON.parse(this.getItemFromStorage('types'))) {
+      this.types = JSON.parse(this.getItemFromStorage('types'));
 
       this.cards.forEach((el) => {
-        let text = el.className.split(" ");
+        let text = el.className.split(' ');
         text = text[text.length - 1];
         if (this.types[text].length !== 0) {
-          el.classList.remove("grey");
+          el.classList.remove('grey');
         }
       });
     }
   }
 
   stopTimer() {
-    if (window.location.hash !== "artgame") {
+    if (window.location.hash !== 'artgame') {
       this.myTimer.stop();
     }
   }
 
   init(e) {
-  
-
-
-    this.cardName = e.currentTarget.className.split(" ");
+    this.cardName = e.currentTarget.className.split(' ');
     this.cardName = this.cardName[this.cardName.length - 1];
-    this.setLocalStorage("cardName", this.cardName);
+    this.setLocalStorage('cardName', this.cardName);
   }
 
   start() {
-  
-
-    if (!this.getItemFromStorage("types")) {
-      this.setLocalStorage("types", JSON.stringify(this.types));
+    if (!this.getItemFromStorage('types')) {
+      this.setLocalStorage('types', JSON.stringify(this.types));
     } else {
-      this.types = JSON.parse(this.getItemFromStorage("types"));
+      this.types = JSON.parse(this.getItemFromStorage('types'));
     }
 
-   
-
-    for (let key in this.types) {
-      this.cards.forEach((el, i)=> {
-        let scoreDiv = document.createElement('div');
+    for (const key in this.types) {
+      this.cards.forEach((el, i) => {
+        const scoreDiv = document.createElement('div');
         scoreDiv.classList.add('artists__cards__card__score');
-       
+
         if (Object.keys(this.types).indexOf(key) !== i) return;
-        let text = this.types[key].length;
+        const text = this.types[key].length;
         scoreDiv.textContent = `${text}`;
         el.append(scoreDiv);
-      })
- 
+      });
     }
   }
 
@@ -110,205 +101,206 @@ export class GetCardName {
     return localStorage.getItem(key);
   }
 
-   fillContent(e, answ) {
-    
-    if (this.getItemFromStorage("timer")) {
+  fillContent(e, answ) {
+    if (this.getItemFromStorage('timer')) {
       this.isTimerOn = true;
     } else {
       this.isTimerOn = false;
     }
 
     if (this.isTimerOn) {
-      document.querySelector(".artgame").append(this.myTimer.component);
+      document.querySelector('.artgame').append(this.myTimer.component);
       this.myTimer.start();
     }
 
-    this.modal.classList.add("none");
+    this.modal.classList.add('none');
 
-    this.lists = document.querySelectorAll(".artgame__controls__list");
+    this.lists = document.querySelectorAll('.artgame__controls__list');
     this.answers = [];
 
     if (!this.cardName) {
-      this.cardName = this.getItemFromStorage("cardName");
+      this.cardName = this.getItemFromStorage('cardName');
     }
 
     this.lists.forEach((el, i) => {
-      for (let j = 0; j < this.types[this.cardName].length; j++) {
+      for (let j = 0; j < this.types[this.cardName].length; j += 1) {
         let char = this.types[this.cardName][j].toString();
 
-        if (this.cardName !== "portrait") {
+        if (this.cardName !== 'portrait') {
           char = char.slice(-1);
         }
-        if (i == char) {
-          el.classList.add("green");
+        if (i === char) {
+          el.classList.add('green');
         } else {
-          el.classList.add("red");
+          el.classList.add('red');
         }
       }
     });
 
     if (!this.imgNumber) {
       switch (this.cardName) {
-        case "portrait":
+        case 'portrait':
           this.imgNumber = 0;
           break;
 
-        case "landscape":
+        case 'landscape':
           this.imgNumber = 11;
           break;
 
-        case "stillLife":
+        case 'stillLife':
           this.imgNumber = 21;
           break;
 
-        case "graphic":
+        case 'graphic':
           this.imgNumber = 31;
           break;
 
-        case "antique":
+        case 'antique':
           this.imgNumber = 41;
           break;
 
-        case "avantGarde":
+        case 'avantGarde':
           this.imgNumber = 51;
           break;
 
-        case "renaissance":
+        case 'renaissance':
           this.imgNumber = 61;
           break;
 
-        case "surrealism":
+        case 'surrealism':
           this.imgNumber = 71;
           break;
 
-        case "kitsch":
+        case 'kitsch':
           this.imgNumber = 81;
           break;
 
-        case "minimalism":
+        case 'minimalism':
           this.imgNumber = 91;
           break;
 
-        case "avangard":
+        case 'avangard':
           this.imgNumber = 101;
           break;
 
-        case "industrial":
+        case 'industrial':
           this.imgNumber = 111;
           break;
+        default:
       }
     }
 
     if (answ === false) {
-      this.imgNumber++;
+      this.imgNumber += 1;
     }
 
     this.checkLastImg();
     while (
-      JSON.parse(this.getItemFromStorage("types"))[this.cardName].indexOf(
-        this.imgNumber
+      JSON.parse(this.getItemFromStorage('types'))[this.cardName].indexOf(
+        this.imgNumber,
       ) !== -1
     ) {
       this.checkLastImg();
-      this.imgNumber++;
+      this.imgNumber += 1;
     }
-    this.img = document.querySelector(".artgame__img-wrap__img");
+    this.img = document.querySelector('.artgame__img-wrap__img');
     this.img.src = `./assets/img/${this.imgNumber}.jpg`;
 
-    this.answer = images[this.imgNumber]["author"];
+    this.answer = images[this.imgNumber].author;
 
     this.answers.push(this.answer);
 
     while (this.answers.length < 4) {
-      let authorNum = this.randomInteger(0, 200);
-      let author = images[authorNum]["author"];
+      const authorNum = this.randomInteger(0, 200);
+      const { author } = images[authorNum];
       if (this.answers.indexOf(author) === -1) {
         this.answers.push(author);
       }
     }
     this.answers = this.answers.sort(() => Math.random() - 0.5);
 
-    this.nodeAnswers = document.querySelectorAll(".artgame__answers__answer");
+    this.nodeAnswers = document.querySelectorAll('.artgame__answers__answer');
 
     this.nodeAnswers.forEach((el, i) => {
-      el.textContent = this.answers[i];
+      const element = el;
+      element.textContent = this.answers[i];
     });
 
-    document.querySelector(".artgame__answers").addEventListener(
-      "click",
+    document.querySelector('.artgame__answers').addEventListener(
+      'click',
       (e) => {
-        let target = e.target;
-        let text = target.textContent;
+        const { target } = e;
+        const text = target.textContent;
 
-        if (target.tagName != "BUTTON") return;
+        if (target.tagName !== 'BUTTON') return;
         this.fillModal(e, text);
         this.myTimer.stop();
       },
       {
         once: true,
-      }
+      },
     );
   }
 
   checkLastImg() {
     if (
-      this.picBreak.indexOf(this.imgNumber) !== -1 &&
-      this.changeArtistPage === false
+      this.picBreak.indexOf(this.imgNumber) !== -1
+      && this.changeArtistPage === false
     ) {
-      window.location.hash = "artists";
+      window.location.hash = 'artists';
     }
   }
 
   fillModal(e, text) {
-
     this.changeArtistPage = false;
 
     let answ = true;
 
-    this.modalIcon = document.querySelector(".modal__icon");
-    this.types = JSON.parse(this.getItemFromStorage("types"));
-    this.modalImg = document.querySelector(".modal__img-wrap__img");
+    this.modalIcon = document.querySelector('.modal__icon');
+    this.types = JSON.parse(this.getItemFromStorage('types'));
+    this.modalImg = document.querySelector('.modal__img-wrap__img');
     this.modalImg.src = `./assets/img/${this.imgNumber}.jpg`;
 
-    let picInfo = [];
-    picInfo.push(images[this.imgNumber]["name"]);
-    picInfo.push(images[this.imgNumber]["author"]);
-    picInfo.push(images[this.imgNumber]["year"]);
+    const picInfo = [];
+    picInfo.push(images[this.imgNumber].name);
+    picInfo.push(images[this.imgNumber].author);
+    picInfo.push(images[this.imgNumber].year);
 
-    this.modalText = document.querySelectorAll(".modal__info__text");
+    this.modalText = document.querySelectorAll('.modal__info__text');
     this.modalText.forEach((el, i) => {
-      el.textContent = picInfo[i];
+      const element = el;
+      element.textContent = picInfo[i];
     });
 
-    this.modal.classList.remove("none");
-    this.modalBtn = document.querySelector(".modal__btn");
+    this.modal.classList.remove('none');
+    this.modalBtn = document.querySelector('.modal__btn');
 
-    this.modalBtn.addEventListener("click", (e) => this.fillContent(e, answ), {
+    this.modalBtn.addEventListener('click', (e) => this.fillContent(e, answ), {
       once: true,
     });
 
     if (text === this.answer) {
-      this.modalIcon.classList.remove("wrong");
-      this.modalIcon.classList.add("correct");
+      this.modalIcon.classList.remove('wrong');
+      this.modalIcon.classList.add('correct');
 
       if (
-        this.types[this.getItemFromStorage("cardName")].indexOf(
-          this.imgNumber
+        this.types[this.getItemFromStorage('cardName')].indexOf(
+          this.imgNumber,
         ) === -1
       ) {
         answ = true;
-        this.types[this.getItemFromStorage("cardName")].push(this.imgNumber);
-        this.setLocalStorage("types", JSON.stringify(this.types));
+        this.types[this.getItemFromStorage('cardName')].push(this.imgNumber);
+        this.setLocalStorage('types', JSON.stringify(this.types));
       }
     } else {
-      this.modalIcon.classList.remove("correct");
-      this.modalIcon.classList.add("wrong");
+      this.modalIcon.classList.remove('correct');
+      this.modalIcon.classList.add('wrong');
       answ = false;
     }
   }
 
   randomInteger(min, max) {
-    let rand = min + Math.random() * (max + 1 - min);
+    const rand = min + Math.random() * (max + 1 - min);
     return Math.floor(rand);
   }
 }
